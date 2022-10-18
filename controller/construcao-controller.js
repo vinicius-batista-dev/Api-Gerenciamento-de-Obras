@@ -2,8 +2,8 @@ const database = require("../models");
 const Construcao = database.construcao;
 
 exports.create = (req, res) => {
-    
-    if (!req.body.nome || !req.body.cnpj || !req.body.endereco || !req.body.telefone || !req.body.email) {
+
+    if (!req.body.descricao || !req.body.dataInicio || !req.body.dataFim || !req.body.horaInicio || !req.body.horaFim) {
         res.status(400).send({
             message: "Nao pode estar vazio"
         });
@@ -11,13 +11,15 @@ exports.create = (req, res) => {
     }
 
     const construcao = {
-        nome: req.body.nome,
-        cnpj: req.body.cnpj,
-        endereco: req.body.endereco,
-        telefone: req.body.telefone,
-        email: req.body.email,
-        funcionarioId: req.body.funcionarioId
+        descricao: req.body.descricao,
+        dataInicio: req.body.dataInicio,
+        dataFim: req.body.dataFim,
+        horaInicio: req.body.horaInicio,
+        horaFim: req.body.horaFim,
+        status: req.body.status ? req.body.status : false,
+        produtoId: req.body.produtoId
     };
+
 
     Construcao.create(construcao)
         .then(data => {
@@ -50,6 +52,7 @@ exports.findAll = (req, res) => {
             });
         });
 }
+
 
 exports.findOne = (req, res) => {
     const id = req.params.id;

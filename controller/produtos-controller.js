@@ -2,20 +2,25 @@ const database = require("../models");
 const Produto = database.produto;
 
 exports.create = (req, res) => {
-    if (!req.body.nome || !req.body.descricao || !req.body.valor || !req.body.quantidade) {
-        res.status(400).send({
-            message: "Nao pode estar vazio"
-        });
-        return;
-    }
+
+    // if (!req.body.nomeDoProduto || !req.body.descricaoDoProduto || !req.body.vaiUsarParaQue || !req.body.qtdProduto) {
+    //     res.status(400).send({
+    //         message: "Nao pode estar vazio"
+    //     });
+    //     return;
+    // }
+
+    // console.log(req.body);
 
     const produto = {
-        nome: req.body.nome,
-        descricao: req.body.descricao,
-        valor: req.body.valor,
-        quantidade: req.body.quantidade,
-        funcionarioId: req.body.funcionarioId
+        nomeDoProduto: req.body.nomeDoProduto,
+        descricaoDoProduto: req.body.descricaoDoProduto,
+        vaiUsarParaQue: req.body.vaiUsarParaQue,
+        qtdProduto: req.body.qtdProduto
     };
+
+
+
 
     Produto.create(produto)
         .then(data => {

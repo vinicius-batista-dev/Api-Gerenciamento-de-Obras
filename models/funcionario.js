@@ -1,23 +1,30 @@
 module.exports = (sequelize, Sequelize) => {
     const Funcionario = sequelize.define("funcionario", {
-        nome: {
+
+        nomeDoFuncionario: {
             type: Sequelize.STRING
         },
-        email: {
+
+        emailDoFuncionario: {
             type: Sequelize.STRING
         },
-        telefone: {
+        
+        telefoneDoFuncionario: {
             type: Sequelize.STRING
         },
-        cpf: {
+
+        cpfDoFuncionario: {
             type: Sequelize.STRING
         },
-        cargo: {
+
+        cargoDoFuncionario: {
             type: Sequelize.STRING
         },
-        salario: {
+
+        salarioDoFuncionario: {
             type: Sequelize.STRING
         },
+
         status: {
             type: Sequelize.BOOLEAN
         }

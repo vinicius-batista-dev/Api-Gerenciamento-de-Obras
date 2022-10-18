@@ -10,7 +10,7 @@ checkExistingUsername = (req, res, next) => {
   .then(user => {
     if (user) {
       res.status(400).send({
-        message: "Username already used!"
+        message: "Usuario ja existe"
       });
       return;
     }
@@ -26,13 +26,17 @@ checkExistingEmail = (req, res, next) => {
   }).then(user => {
     if (user) {
       res.status(400).send({
-        message: "Email already used!"
+        message: "Email ja existe"
       });
       return;
     }
     next();
   });
 };
+
+
+  
+
 
 const verifyUser = {
   checkExistingUsername: checkExistingUsername,

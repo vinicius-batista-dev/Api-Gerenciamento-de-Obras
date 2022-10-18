@@ -10,9 +10,9 @@ module.exports = (app) => {
         next();
     });
 
-    app.post('/api/funcionario', [jwtAuth.verifyToken], funcionarioController.create);
-    app.get('/api/funcionario', [jwtAuth.verifyToken], funcionarioController.findAll);
-    app.get('/api/funcionario/:id', [jwtAuth.verifyToken], funcionarioController.findOne);
-    app.put('/api/funcionario/atualizar/:id', [jwtAuth.verifyToken], funcionarioController.update);
-    app.delete('/api/funcionario/deletar/:id', [jwtAuth.verifyToken], funcionarioController.delete);
+    app.post('/api/funcionario', jwtAuth.verifyToken, funcionarioController.create);
+    app.get('/api/funcionario', jwtAuth.verifyToken, funcionarioController.findAll);
+    app.get('/api/funcionario/:id', jwtAuth.verifyToken, funcionarioController.findOne);
+    app.put('/api/funcionario/atualizar/:id', jwtAuth.verifyToken, funcionarioController.update);
+    app.delete('/api/funcionario/deletar/:id', jwtAuth.verifyToken, funcionarioController.delete);
 }
