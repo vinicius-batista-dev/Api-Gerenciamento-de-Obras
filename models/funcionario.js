@@ -23,11 +23,8 @@ module.exports = (sequelize, Sequelize) => {
 
         salarioDoFuncionario: {
             type: Sequelize.STRING
-        },
-
-        status: {
-            type: Sequelize.BOOLEAN
         }
+
     });
     return Funcionario;
 }

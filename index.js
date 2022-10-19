@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
-const swaggerUi = require('swagger-ui-express')
 const cors = require('cors');
 
 
@@ -20,6 +19,7 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+    
 
 db.sequelize.sync({ force: true })
 
@@ -28,7 +28,6 @@ app.get('/', (req, res) => {
 });
 
 
-app.use('/api-docs/', swaggerUi.serve, swaggerUi.setup(apiprodutos));
 
 
 require('./routes/user-routes')(app);

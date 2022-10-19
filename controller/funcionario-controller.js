@@ -3,12 +3,11 @@ const Funcionario = database.funcionario;
 
 exports.create = (req, res) => {
   if (
-    !req.body.nome ||
-    !req.body.cpf ||
-    !req.body.email ||
-    !req.body.telefone ||
-    !req.body.cargo ||
-    !req.body.salario
+    !req.body.nomeDoFuncionario ||
+    !req.body.cpfDoFuncionario ||
+    !req.body.emailDoFuncionario ||
+    !req.body.cargoDoFuncionario ||
+    !req.body.salarioDoFuncionario
   ) {
     res.status(400).send({
       message: "Nao pode estar vazio",
@@ -17,12 +16,11 @@ exports.create = (req, res) => {
   }
 
   const funcionario = {
-    nomeDoFuncionario: req.body.nome,
-    cpfDoFuncionario: req.body.cpf,
-    emailDoFuncionario: req.body.email,
-    cargoDoFuncionario: req.body.cargo,
-    salarioDoFuncionario: req.body.salario,
-    status: req.body.status ? req.body.status : false,
+    nomeDoFuncionario: req.body.nomeDoFuncionario,
+    cpfDoFuncionario: req.body.cpfDoFuncionario,
+    emailDoFuncionario: req.body.emailDoFuncionario,
+    cargoDoFuncionario: req.body.cargoDoFuncionario,
+    salarioDoFuncionario: req.body.salarioDoFuncionario,
     construcaoId: req.body.construcaoId,
     produtoId: req.body.produtoId,
   };
