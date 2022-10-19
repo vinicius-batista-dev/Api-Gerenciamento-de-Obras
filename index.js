@@ -2,6 +2,8 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const swaggerUi = require('swagger-ui-express')
+const cors = require('cors');
+
 
 const apiprodutos = require('./docs/apiprodutos.js')
 
@@ -13,9 +15,13 @@ app.use(bodyParser.json());
 
 const db = require('./models');
 
-db.sequelize.sync({ force: true }).then(() => {
-    console.log("Drop and re-sync db.");
-});
+const corsOptions = {
+    origin: 'http://localhost:3000'
+}
+
+app.use(cors(corsOptions));
+
+db.sequelize.sync({ force: true })
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

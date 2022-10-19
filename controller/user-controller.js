@@ -73,7 +73,15 @@ exports.signin = async (req, res) => {
   }
 };
 
-//Deve deletar o usuario com token
+exports.listAll = async (req, res) => {
+  try {
+    const users = await User.findAll();
+    res.send(users);
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: req.userId } });

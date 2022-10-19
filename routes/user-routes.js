@@ -12,9 +12,6 @@ module.exports = (app) => {
 
   app.post("/api/auth/signup", userController.signup);
   app.post("/api/auth/signin", userController.signin);
-  app.delete(
-    "/api/auth/signout/:id",
-    [jwtAuth.verifyToken],
-    userController.deleteUser
-  );
+  app.get("/api/auth/listUser", userController.listAll);
+  
 };
