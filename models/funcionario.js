@@ -1,5 +1,10 @@
 module.exports = (sequelize, Sequelize) => {
     const Funcionario = sequelize.define("funcionario", {
+        id: {
+            type: Sequelize.INTEGER,
+            primaryKey: true,
+            autoIncrement: true,
+        },
 
         nomeDoFuncionario: {
             type: Sequelize.STRING

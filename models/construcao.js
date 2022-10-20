@@ -1,26 +1,31 @@
 module.exports = (sequelize, Sequelize) => {
-    const Construcao = sequelize.define("construcao", {
+  const Construcao = sequelize.define("construcao", {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true,
+    },
 
-        descricao: {
-            type: Sequelize.STRING
-        },
+    descricao: {
+      type: Sequelize.STRING,
+    },
 
-        dataInicio: {
-            type: Sequelize.DATE
-        },
+    dataInicio: {
+      type: Sequelize.DATE,
+    },
 
-        dataFim: {
-            type: Sequelize.DATE
-        },
+    dataFim: {
+      type: Sequelize.DATE,
+    },
 
-        horaInicio: {
-            type: Sequelize.TIME
-        },
+    horaInicio: {
+      type: Sequelize.TIME,
+    },
 
-        horaFim: {
-            type: Sequelize.TIME
-        }
-    });
+    horaFim: {
+      type: Sequelize.TIME,
+    },
+  });
 
-    return Construcao;
-}
+  return Construcao;
+};

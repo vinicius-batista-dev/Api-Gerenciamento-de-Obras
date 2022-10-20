@@ -1,5 +1,7 @@
 const database = require("../models");
 const Funcionario = database.funcionario;
+const emailValidator = require("email-validator");
+const validarCpf = require("../utils/validarCpf");
 
 exports.create = (req, res) => {
   if (
@@ -10,7 +12,21 @@ exports.create = (req, res) => {
     !req.body.salarioDoFuncionario
   ) {
     res.status(400).send({
-      message: "Nao pode estar vazio",
+      message: "Nao pode estar vazio funcionario",
+    });
+    return;
+  }
+
+  if (!emailValidator.validate(req.body.emailDoFuncionario)) {
+    res.status(400).send({
+      message: "Email invalido",
+    });
+    return;
+  }
+
+  if (!validarCpf(req.body.cpfDoFuncionario)) {
+    res.status(400).send({
+      message: "Cpf invalido",
     });
     return;
   }
@@ -22,7 +38,6 @@ exports.create = (req, res) => {
     cargoDoFuncionario: req.body.cargoDoFuncionario,
     salarioDoFuncionario: req.body.salarioDoFuncionario,
     construcaoId: req.body.construcaoId,
-    produtoId: req.body.produtoId,
   };
 
   Funcionario.create(funcionario)
