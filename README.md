@@ -12,6 +12,14 @@
 
     git clone https://github.com/vinicius-batista-dev/Api-Gerenciamento-de-Obras.git
 
+## instalar os pacotes ##
+
+    npm install
+
+## logo em seguida starte ##
+
+    npm start
+
 ## Identificação e missão do sistema ##
 
     O sistema será desenvolvido para  as empresas de construção civil  para gerência de obras, o qual facilitará os processos e controlará o tempo no decorrer da construção. 
