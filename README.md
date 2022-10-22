@@ -140,4 +140,4 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 <h2 id="autor">🦸 Autor</h2>
 
-Feito com ❤️ por Vinicius Batista 👋🏽 [Entre em contato!](https://www.linkedin.com/in/vinicius-batista-9b1b3b1b3/)
+Feito com ❤️ por Vinicius Batista 👋🏽 [Entre em contato!](https://www.linkedin.com/in/vinicius-batista-braz-82b260192)
