@@ -69,3 +69,21 @@ Deve atualizar os cadastros realizados method PUT
 - [x] O interessado deve ser capaz de atualizar os funcionarios
 - [x] O interessado deve ser capaz de atualizar os produtos
 - [x] O interessado deve ser capaz de atualizar as construcoes
+
+<h2 id="tecnologias">🛠 Tecnologias</h2>
+
+As seguintes ferramentas foram usadas na construção do projeto:
+
+- [Node.js](https://nodejs.org/en/)
+- [Express](https://expressjs.com/pt-br/)
+- [MySQL](https://www.mysql.com/)
+- [JWT](https://jwt.io/)
+- [Bcrypt](https://www.npmjs.com/package/bcrypt)
+
+<h2 id="autor">🦸 Autor</h2>
+
+<h2 id="licenca">📝 Licença</h2>
+
+Este projeto esta sobe a licença [MIT](./LICENSE).
+
+Feito com ❤️ por Vinicius Batista 👋🏽 [Entre em contato!](https://www.linkedin.com/in/vinicius-batista-9b1b3b1b3/)
