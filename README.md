@@ -46,6 +46,12 @@
 - [x] Caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara
 - [x] Após finalizar o cadastro, o usuário deve ser redirecionado para a tela de cadastro de funcionarios, produtos e contrucoes
 
+🔎 Insercao de dados Method POST
+
+- [x] O interessado deve ser capaz de cadastrar os produtos
+- [x] O interessado deve ser capaz de cadastrar os funcionarios
+- [x] O interessado deve ser capaz de cadastrar as construcoes
+
 🔎 Busca e seleção de Method GET
 
 - [x] O interessado deve ser capaz de visualizar uma lista de funcionarios
