@@ -22,21 +22,21 @@
 
 ## Identificação e missão do sistema
 
-     <p>O sistema será desenvolvido para  as empresas de construção civil  para gerência de obras, o qual facilitará os processos e controlará o tempo no decorrer da construção.</p>
+     O sistema será desenvolvido para  as empresas de construção civil  para gerência de obras, o qual facilitará os processos e controlará o tempo no decorrer da construção.
 
 ## Domínio do problema e contexto de sua aplicação
 
-     <p>Tendo em vista a dificuldade de acesso aos serviços de gerenciamento das construções de algumas empresas. O sistema visa facilitar ao interessado os serviços mais básicos de administração, tais como: Gestão de obras, gestão de funcionários relacionados às obras, gestão de peças relacionadas às obras. </p>
+     Tendo em vista a dificuldade de acesso aos serviços de gerenciamento das construções de algumas empresas. O sistema visa facilitar ao interessado os serviços mais básicos de administração, tais como: Gestão de obras, gestão de funcionários relacionados às obras, gestão de peças relacionadas às obras.
 
 ## Descrição dos interessados do sistema
 
-    <p> O interessado do uso no sistema seria as empresas de construção civil que queiram ter uma gestão de qualidade, na hora de conferir as construções, na hora de conferir se o funcionário está relacionado aquela construção, na hora de conferir se aquele produto está relacionado àquela. </p>
+     O interessado do uso no sistema seria as empresas de construção civil que queiram ter uma gestão de qualidade, na hora de conferir as construções, na hora de conferir se o funcionário está relacionado aquela construção, na hora de conferir se aquele produto está relacionado àquela.
 
 ## Objetivo ou características desejada
 
-    <p> O interessado irá gerenciar as obras </p>
-    <p> O interessado irá gerenciar os funcionários relacionados com a obra para </p>
-    <p> O interessado irá gerenciar os produtos que vão ser usados naquela obra relacionado com o funcionário </p>
+     O interessado irá gerenciar as obras
+     O interessado irá gerenciar os funcionários relacionados com a obra para
+     O interessado irá gerenciar os produtos que vão ser usados naquela obra relacionado com o funcionário
 
 <h2 id="features">✔️ Features</h2>
 
@@ -44,7 +44,7 @@
 
 - [x] O interessado deve ser capaz de criar uma conta, cadastrando seus dados como username, email e password
 - [x] Caso insira alguma informação incorreta ou deixe de inserir alguma informação obrigatória, o usuário deve receber uma mensagem de erro clara
-- [x] Após finalizar o cadastro, o usuário deve ser redirecionado para a tela de cadastro de produtos, formularios e contrucoes
+- [x] Após finalizar o cadastro, o usuário deve ser redirecionado para a tela de cadastro de funcionarios, produtos e contrucoes
 
 🔎 Busca e seleção de Method GET
 
