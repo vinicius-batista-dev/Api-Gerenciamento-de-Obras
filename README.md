@@ -80,7 +80,7 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [JWT](https://jwt.io/)
 - [Bcrypt](https://www.npmjs.com/package/bcrypt)
 
-<h2> id="endpoints">🚀 Endpoints</h2>
+<h2 id="endpoints">🚀 Endpoints</h2>
 
 <h3>🔑 Login</h3>
 
