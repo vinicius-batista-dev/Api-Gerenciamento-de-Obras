@@ -18,7 +18,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 app.get("/", (req, res) => {
   res.send("App gerenciamento de obras working");
