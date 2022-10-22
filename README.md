@@ -80,6 +80,64 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [JWT](https://jwt.io/)
 - [Bcrypt](https://www.npmjs.com/package/bcrypt)
 
+<h2> id="endpoints">🚀 Endpoints</h2>
+
+<h3>🔑 Login</h3>
+
+- **POST** `/login`
+
+<h3>🔑 Cadastro</h3>
+
+- **POST** `/cadastro`
+
+<h3>🔑 Cadastro de funcionarios</h3>
+
+- **POST** `/cadastro/funcionarios`
+
+<h3>🔑 Cadastro de produtos</h3>
+
+- **POST** `/cadastro/produtos`
+
+<h3>🔑 Cadastro de construcoes</h3>
+
+- **POST** `/cadastro/construcoes`
+
+<h3>🔑 Listar funcionarios</h3>
+
+- **GET** `/listar/funcionarios`
+
+<h3>🔑 Listar produtos</h3>
+
+- **GET** `/listar/produtos`
+
+<h3>🔑 Listar construcoes</h3>
+
+- **GET** `/listar/construcoes`
+
+<h3>🔑 Deletar funcionarios</h3>
+
+- **DELETE** `/deletar/funcionarios`
+
+<h3>🔑 Deletar produtos</h3>
+
+- **DELETE** `/deletar/produtos`
+
+<h3>🔑 Deletar construcoes</h3>
+
+- **DELETE** `/deletar/construcoes`
+
+<h3>🔑 Atualizar funcionarios</h3>
+
+- **PUT** `/atualizar/funcionarios`
+
+<h3>🔑 Atualizar produtos</h3>
+
+- **PUT** `/atualizar/produtos`
+
+<h3>🔑 Atualizar construcoes</h3>
+
+- **PUT** `/atualizar/construcoes`
+
 <h2 id="autor">🦸 Autor</h2>
 
 Feito com ❤️ por Vinicius Batista 👋🏽 [Entre em contato!](https://www.linkedin.com/in/vinicius-batista-9b1b3b1b3/)
