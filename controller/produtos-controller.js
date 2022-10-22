@@ -2,6 +2,7 @@ const database = require("../models");
 const Produto = database.produto;
 
 exports.create = async (req, res) => {
+  console.log(req.body);
   try {
     if (
       !req.body.nomeDoProduto ||
@@ -12,8 +13,7 @@ exports.create = async (req, res) => {
     ) {
       res.status(400).send({
         message: "Nao pode estar vazio produto",
-      });
-      return;
+      });    
     }
 
     const produto = {

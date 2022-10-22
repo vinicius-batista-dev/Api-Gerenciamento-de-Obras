@@ -56,6 +56,7 @@ exports.signin = async (req, res) => {
         .send({ token: null, message: "Usuario ou Senha Invalida" });
     }
 
+
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
       user.password
