@@ -94,8 +94,8 @@ const swaggerDocument = {
     "/api/produtos": {
       post: {
         tags: ["Produtos"],
-        description: "Create a new Produto",
-        operationId: "signin",
+        description: "Criando um novo produto",
+        operationId: "Produto",
         parameters: [],
         requestBody: {
           content: {
@@ -114,6 +114,82 @@ const swaggerDocument = {
               "application/json": {
                 schema: {
                   $ref: "#/components/schemas/Produto",
+                },
+              },
+            },
+          },
+          500: {
+            description: "Server error",
+          },
+        },
+        security: [
+          {
+            bearer: [],
+          },
+        ],
+      },
+    },
+    "/api/funcionario": {
+      post: {
+        tags: ["Funcionario"],
+        description: "Criando um novo funcionario",
+        operationId: "Funcionario",
+        parameters: [],
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                $ref: "#/components/schemas/Funcionario",
+              },
+            },
+          },
+          required: true,
+        },
+        responses: {
+          201: {
+            description: "Funcionario criado",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Funcionario",
+                },
+              },
+            },
+          },
+          500: {
+            description: "Server error",
+          },
+        },
+        security: [
+          {
+            bearer: [],
+          },
+        ],
+      },
+    },
+    "/api/construcao": {
+      post: {
+        tags: ["Construcao"],
+        description: "Criando um nova construcao",
+        operationId: "Construcao",
+        parameters: [],
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                $ref: "#/components/schemas/Construcao",
+              },
+            },
+          },
+          required: true,
+        },
+        responses: {
+          201: {
+            description: "Construcao criado",
+            content: {
+              "application/json": {
+                schema: {
+                  $ref: "#/components/schemas/Construcao",
                 },
               },
             },
@@ -184,13 +260,65 @@ const swaggerDocument = {
           },
         },
       },
+      Funcionario: {
+        type: "object",
+        properties: {
+          id: {
+            type: "integer",
+            format: "int64",
+          },
+          nomeDoFuncionario: {
+            type: "string",
+          },
+          telefoneDoFuncionario: {
+            type: "string",
+          },
+          cpfDoFuncionario: {
+            type: "string",
+          },
+          emailDoFuncionario: {
+            type: "string",
+          },
+          cargoDoFuncionario: {
+            type: "string",
+          },
+          salarioDoFuncionario: {
+            type: "string",
+          },
+        },
+      },
+      Construcao: {
+        type: "object",
+        properties: {
+          id: {
+            type: "integer",
+            format: "int64",
+          },
+          descricao: {
+            type: "string",
+          },
+          dataInicio: {
+            type: "DATE",
+          },
+          dataFim: {
+            type: "DATE",
+          },
+          horaInicio: {
+            type: "TIME",
+          },
+          horaFim: {
+            type: "TIME",
+          },
+        },
+      },
     },
   },
 };
 
-db.sequelize.sync().then(() => {
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
