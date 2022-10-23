@@ -37,7 +37,6 @@ exports.create = (req, res) => {
     emailDoFuncionario: req.body.emailDoFuncionario,
     cargoDoFuncionario: req.body.cargoDoFuncionario,
     salarioDoFuncionario: req.body.salarioDoFuncionario,
-    construcaoId: req.body.construcaoId,
   };
 
   Funcionario.create(funcionario)

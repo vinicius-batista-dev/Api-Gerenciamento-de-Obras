@@ -15,12 +15,15 @@ exports.create = (req, res) => {
     return;
   }
 
+  //Deve criar a construcao com o relacionamento com o funcionario
   const construcao = {
     descricao: req.body.descricao,
     dataInicio: req.body.dataInicio,
     dataFim: req.body.dataFim,
     horaInicio: req.body.horaInicio,
     horaFim: req.body.horaFim,
+    funcionarioId: req.body.funcionarioId,
+    produtoId: req.body.produtoId,
   };
 
   Construcao.create(construcao)

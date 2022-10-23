@@ -13,7 +13,7 @@ exports.create = async (req, res) => {
     ) {
       res.status(400).send({
         message: "Nao pode estar vazio produto",
-      });    
+      });
     }
 
     const produto = {
@@ -22,6 +22,7 @@ exports.create = async (req, res) => {
       qtdProduto: req.body.qtdProduto,
       valorDoProduto: req.body.valorDoProduto,
       vaiUsarParaQue: req.body.vaiUsarParaQue,
+      funcionarioId: req.body.funcionarioId,
     };
 
     await Produto.create(produto)
