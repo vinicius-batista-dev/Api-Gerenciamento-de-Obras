@@ -20,7 +20,6 @@ exports.create = async (req, res) => {
       descricaoDoProduto: req.body.descricaoDoProduto,
       qtdProduto: req.body.qtdProduto,
       vaiUsarParaQue: req.body.vaiUsarParaQue,
-      funcionarioId: req.body.funcionarioId,
     };
 
     await Produto.create(produto)

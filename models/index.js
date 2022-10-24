@@ -33,19 +33,8 @@ db.construcao.belongsTo(db.funcionario, {
   as: "funcionario",
 });
 
-db.funcionario.hasMany(db.construcao, {
-  foreignKey: "funcionarioId",
+db.produto.belongsTo(db.construcao, {
+  foreignKey: "construcaoId",
   as: "construcao",
 });
-
-db.construcao.belongsTo(db.produto, {
-  foreignKey: "produtoId",
-  as: "produto",
-});
-
-db.produto.hasMany(db.construcao, {
-  foreignKey: "produtoId",
-  as: "construcao",
-});
-
 module.exports = db;

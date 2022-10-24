@@ -36,4 +36,10 @@ module.exports = (app) => {
     jwtAuth.verifyToken,
     funcionarioController.delete
   );
+
+  // app.get(
+  //   "/api/funcionario/{id}/construcao",
+  //   jwtAuth.verifyToken,
+  //   funcionarioController.random
+  // );
 };

@@ -32,13 +32,14 @@ exports.create = (req, res) => {
     return;
   }
 
+  //funcionario esta relacionado com construcao
   const funcionario = {
     nomeDoFuncionario: req.body.nomeDoFuncionario,
     cpfDoFuncionario: req.body.cpfDoFuncionario,
     emailDoFuncionario: req.body.emailDoFuncionario,
     cargoDoFuncionario: req.body.cargoDoFuncionario,
-    telefoneDoFuncionario: req.body.telefoneDoFuncionario,
     salarioDoFuncionario: req.body.salarioDoFuncionario,
+    telefoneDoFuncionario: req.body.telefoneDoFuncionario,
   };
 
   Funcionario.create(funcionario)

@@ -23,7 +23,6 @@ exports.create = (req, res) => {
     horaInicio: req.body.horaInicio,
     horaFim: req.body.horaFim,
     funcionarioId: req.body.funcionarioId,
-    produtoId: req.body.produtoId,
   };
 
   Construcao.create(construcao)
@@ -86,6 +85,7 @@ exports.update = (req, res) => {
     .catch((err) => {
       res.status(500).send({
         message: "Error ao atualizar construcao com id=" + id,
+        err,
       });
     });
 };

@@ -125,32 +125,6 @@ const swaggerDocument = {
           },
         ],
       },
-      get: {
-        tags: ["Produtos"],
-        summary: "Encontra todos os produtos",
-        description: "Encontra todos os produtos",
-        operationId: "findAll",
-        responses: {
-          200: {
-            description: "Produtos encontrados com sucesso",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Produto",
-                },
-              },
-            },
-          },
-          500: {
-            description: "Erro ao encontrar os produtos",
-          },
-        },
-        security: [
-          {
-            bearer: [],
-          },
-        ],
-      },
     },
     "/api/produtos/{id}": {
       get: {
@@ -432,12 +406,20 @@ const swaggerDocument = {
         ],
       },
     },
-    "/api/construcao": {
+    "/api/construcao/": {
       post: {
         tags: ["Construcao"],
         summary: "Cria uma construcao",
         description: "Cria uma construcao",
         operationId: "create",
+        parameters: [
+          {
+            name: "id",
+            in: "path",
+            description: "ID do funcionario",
+            required: true,
+          },
+        ],
         requestBody: {
           content: {
             "application/json": {
@@ -468,104 +450,6 @@ const swaggerDocument = {
           },
         ],
       },
-      get: {
-        tags: ["Construcao"],
-        summary: "Busca todas as construcoes",
-        description: "Busca todas as construcoes",
-        operationId: "findAll",
-        responses: {
-          200: {
-            description: "Construcoes encontradas com sucesso",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Construcao",
-                },
-              },
-            },
-          },
-          500: {
-            description: "Erro ao buscar construcoes",
-          },
-        },
-        security: [
-          {
-            bearer: [],
-          },
-        ],
-      },
-      put: {
-        tags: ["Construcao"],
-        summary: "Atualiza uma construcao",
-        description: "Atualiza uma construcao",
-        operationId: "update",
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Construcao",
-              },
-            },
-          },
-        },
-        responses: {
-          200: {
-            description: "Construcao atualizada com sucesso",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Construcao",
-                },
-              },
-            },
-          },
-          500: {
-            description: "Erro ao atualizar uma construcao",
-          },
-        },
-        security: [
-          {
-            bearer: [],
-          },
-        ],
-      },
-      delete: {
-        tags: ["Construcao"],
-        summary: "Deleta uma construcao",
-        description: "Deleta uma construcao",
-        operationId: "delete",
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Construcao",
-              },
-            },
-          },
-        },
-        responses: {
-          200: {
-            description: "Construcao deletada com sucesso",
-            content: {
-              "application/json": {
-                schema: {
-                  $ref: "#/components/schemas/Construcao",
-                },
-              },
-            },
-          },
-          500: {
-            description: "Erro ao deletar uma construcao",
-          },
-        },
-        security: [
-          {
-            bearer: [],
-          },
-        ],
-      },
-    },
-    "/api/construcao/{id}": {
       get: {
         tags: ["Construcao por {ID}"],
         summary: "Busca uma construcao pelo ID",
@@ -656,15 +540,6 @@ const swaggerDocument = {
             required: true,
           },
         ],
-        requestBody: {
-          content: {
-            "application/json": {
-              schema: {
-                $ref: "#/components/schemas/Construcao",
-              },
-            },
-          },
-        },
         responses: {
           200: {
             description: "Construcao deletada com sucesso",
@@ -810,7 +685,9 @@ const swaggerDocument = {
   },
 };
 
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());

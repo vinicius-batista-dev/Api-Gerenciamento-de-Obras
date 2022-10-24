@@ -19,12 +19,12 @@ module.exports = (app) => {
     construcaoController.findOne
   );
   app.put(
-    "/api/construcao/atualizar/:id",
+    "/api/construcao/:id",
     jwtAuth.verifyToken,
     construcaoController.update
   );
   app.delete(
-    "/api/construcao/deletar/:id",
+    "/api/construcao/:id",
     jwtAuth.verifyToken,
     construcaoController.delete
   );
