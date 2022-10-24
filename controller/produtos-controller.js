@@ -8,7 +8,6 @@ exports.create = async (req, res) => {
       !req.body.nomeDoProduto ||
       !req.body.descricaoDoProduto ||
       !req.body.qtdProduto ||
-      !req.body.valorDoProduto ||
       !req.body.vaiUsarParaQue
     ) {
       res.status(400).send({
@@ -20,7 +19,6 @@ exports.create = async (req, res) => {
       nomeDoProduto: req.body.nomeDoProduto,
       descricaoDoProduto: req.body.descricaoDoProduto,
       qtdProduto: req.body.qtdProduto,
-      valorDoProduto: req.body.valorDoProduto,
       vaiUsarParaQue: req.body.vaiUsarParaQue,
       funcionarioId: req.body.funcionarioId,
     };

@@ -9,7 +9,8 @@ exports.create = (req, res) => {
     !req.body.cpfDoFuncionario ||
     !req.body.emailDoFuncionario ||
     !req.body.cargoDoFuncionario ||
-    !req.body.salarioDoFuncionario
+    !req.body.salarioDoFuncionario ||
+    !req.body.telefoneDoFuncionario
   ) {
     res.status(400).send({
       message: "Nao pode estar vazio funcionario",
@@ -36,6 +37,7 @@ exports.create = (req, res) => {
     cpfDoFuncionario: req.body.cpfDoFuncionario,
     emailDoFuncionario: req.body.emailDoFuncionario,
     cargoDoFuncionario: req.body.cargoDoFuncionario,
+    telefoneDoFuncionario: req.body.telefoneDoFuncionario,
     salarioDoFuncionario: req.body.salarioDoFuncionario,
   };
 
