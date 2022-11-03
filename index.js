@@ -8,54 +8,12 @@ const db = require("./models");
 const port = process.env.PORT || 4000;
 
 corsOptions = {
-  origin: "http://localhost:4000/api-docs",
+  origin: "http://localhost:10000",
   optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.
 };
 
 //localhost:10000/api/auth/signup
-
-corsOptions2 = {
-  origin: "http://localhost:10000/api/auth/signup",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions3 = {
-  origin: "http://localhost:10000/api/auth/signin",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions4 = {
-  origin: "http://localhost:10000/api/auth/signout",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions5 = {
-  origin: "http://localhost:10000/api/construcao",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions6 = {
-  origin: "http://localhost:10000/api/construcao/:id",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions7 = {
-  origin: "http://localhost:10000/api/construcao",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
-
-corsOptions8 = {
-  origin: "http://localhost:10000/api/construcao/:id",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-};
 
 const swaggerDocument = {
   openapi: "3.0.0",
