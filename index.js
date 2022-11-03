@@ -13,10 +13,46 @@ corsOptions = {
   credentials: true, // This is important.
 };
 
-//https://api-service-tahz.onrender.com
+//localhost:10000/api/auth/signup
 
 corsOptions2 = {
-  origin: "https://api-service-tahz.onrender.com" + "/api-docs" + "/",
+  origin: "http://localhost:10000/api/auth/signup",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions3 = {
+  origin: "http://localhost:10000/api/auth/signin",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions4 = {
+  origin: "http://localhost:10000/api/auth/signout",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions5 = {
+  origin: "http://localhost:10000/api/construcao",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions6 = {
+  origin: "http://localhost:10000/api/construcao/:id",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions7 = {
+  origin: "http://localhost:10000/api/construcao",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+corsOptions8 = {
+  origin: "http://localhost:10000/api/construcao/:id",
   optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.
 };
@@ -703,6 +739,13 @@ db.sequelize.sync({ force: true }).then(() => {
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(cors(corsOptions2));
+app.use(cors(corsOptions3));
+app.use(cors(corsOptions4));
+app.use(cors(corsOptions5));
+app.use(cors(corsOptions6));
+app.use(cors(corsOptions7));
+app.use(cors(corsOptions8));
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
