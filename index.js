@@ -681,11 +681,9 @@ const swaggerDocument = {
     },
   },
 };
-
-const API = "https://api-service-tahz.onrender.com" + "/api-docs";
-
-var corsOptions = {
-  origin: API,
+let corsOptions = {
+  origin: "https://api-service-tahz.onrender.com",
+  optionsSuccessStatus: 200,
 };
 
 app.use(cors(corsOptions));
