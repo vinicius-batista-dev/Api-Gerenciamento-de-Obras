@@ -21,6 +21,9 @@ const corsOptions2 = {
   optionsSuccessStatus: 200,
 };
 
+app.use(cors(corsOptions));
+app.use(cors(corsOptions2));
+
 const swaggerDocument = {
   openapi: "3.0.0",
   info: {
