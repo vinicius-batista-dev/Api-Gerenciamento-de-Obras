@@ -5,11 +5,16 @@ const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const db = require("./models");
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 4000;
 
+// 100.20.92.101
+// 44.225.181.72
+// 44.227.217.144
 // https://api-service-tahz.onrender.com
-corsOptions = {
+const corsOptions = {
   origin: "https://api-service-tahz.onrender.com",
+  port: 10000,
+  isDev: true,
   optionsSuccessStatus: 200,
 };
 
