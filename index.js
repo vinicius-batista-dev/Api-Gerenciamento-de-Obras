@@ -1,11 +1,25 @@
-const express = require("express");
-const port = process.env.PORT || 4000;
-const db = require("./models");
-const Role = db.role;
+const app = require("express")();
+const http = require("http");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
-const bodyParser = require("body-parser");
-const app = express();
+const db = require("./models");
+
+const port = process.env.PORT || 4000;
+
+corsOptions = {
+  origin: "http://localhost:4000/api-docs",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
+
+//https://api-service-tahz.onrender.com
+
+corsOptions2 = {
+  origin: "https://api-service-tahz.onrender.com",
+  optionsSuccessStatus: 200, // For legacy browser support
+  credentials: true, // This is important.
+};
 
 const swaggerDocument = {
   openapi: "3.0.0",
@@ -681,38 +695,35 @@ const swaggerDocument = {
     },
   },
 };
-let corsOptions = {
-  origin: "https://api-service-tahz.onrender.com",
-  optionsSuccessStatus: 200,
-};
-
-app.use(cors(corsOptions));
-
-app.use(express.json());
-// parse requests of content-type - application/json
-app.use(bodyParser.json());
-
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true }));
-
-// simple route
 
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
 
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+
+http.createServer(app).listen(port);
+console.log("Listening at:// port:%s (HTTP)", port);
+
+var options = {
+  swaggerOptions: {
+    persistAuthorization: true,
+  },
+};
+
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerDocument, options)
+);
+
 app.get("/", (req, res) => {
   res.send("App gerenciamento de obras working");
 });
 
-app.use("/", require("./routes/user-routes"));
-app.use("/", require("./routes/funcionario-routes"));
-app.use("/", require("./routes/produtos-routes"));
-app.use("/", require("./routes/construcao-routes"));
-
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
-// set port, listen for requests
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}.`);
-});
+require("./routes/user-routes")(app);
+require("./routes/funcionario-routes")(app);
+require("./routes/construcao-routes")(app);
+require("./routes/produtos-routes")(app);
