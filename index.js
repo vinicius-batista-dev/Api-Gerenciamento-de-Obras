@@ -16,7 +16,7 @@ corsOptions = {
 //https://api-service-tahz.onrender.com
 
 corsOptions2 = {
-  origin: "https://api-service-tahz.onrender.com",
+  origin: "https://api-service-tahz.onrender.com" + "/api-docs" + "/",
   optionsSuccessStatus: 200, // For legacy browser support
   credentials: true, // This is important.
 };
