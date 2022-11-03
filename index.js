@@ -737,15 +737,18 @@ db.sequelize.sync({ force: true }).then(() => {
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
-app.use(cors(corsOptions2));
-app.use(cors(corsOptions3));
-app.use(cors(corsOptions4));
-app.use(cors(corsOptions5));
-app.use(cors(corsOptions6));
-app.use(cors(corsOptions7));
-app.use(cors(corsOptions8));
+app.use(
+  cors(
+    corsOptions,
+    { origin: true },
+    { credentials: true },
+    { methods: "GET,HEAD,PUT,PATCH,POST,DELETE" },
+    { preflightContinue: false },
+    { optionsSuccessStatus: 204 }
+  )
+);
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
