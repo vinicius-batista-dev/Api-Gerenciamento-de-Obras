@@ -7,12 +7,15 @@ const db = require("./models");
 
 const port = process.env.PORT || 4000;
 
-// 100.20.92.101
-// 44.225.181.72
-// 44.227.217.144
-// https://api-service-tahz.onrender.com
 const corsOptions = {
-  origin: "https://api-service-tahz.onrender.com",
+  origin: "https://api-service-tahz.onrender.com" + "/api-docs",
+  port: 10000,
+  isDev: true,
+  optionsSuccessStatus: 200,
+};
+
+const corsOptions2 = {
+  origin: "localhost:3000",
   port: 10000,
   isDev: true,
   optionsSuccessStatus: 200,
