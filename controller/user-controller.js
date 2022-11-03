@@ -56,7 +56,6 @@ exports.signin = async (req, res) => {
         .send({ token: null, message: "Usuario ou Senha Invalida" });
     }
 
-
     const passwordIsValid = bcrypt.compareSync(
       req.body.password,
       user.password
@@ -114,10 +113,18 @@ exports.logout = async (req, res) => {
   }
 };
 
-exports.listAll = async (req, res) => {
+exports.UserById = async (req, res) => {
   try {
-    const users = await User.findAll();
-    res.send(users);
+    const user = await User.findOne({ where: { id: req.userId } });
+    if (!user) {
+      return res.status(404).send({ message: "Usuario nao encontrado" });
+    }
+    return res.status(200).send({
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      role: user.role,
+    });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }

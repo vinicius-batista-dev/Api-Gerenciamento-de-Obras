@@ -6,17 +6,18 @@ const swaggerUi = require("swagger-ui-express");
 const db = require("./models");
 
 const port = process.env.PORT || 4000;
-const corsOptions = {
-  origin: `http://localhost:${port}`,
+
+corsOptions = {
+  origin: "https://api-service-tahz.onrender.com",
 };
 
 const swaggerDocument = {
   openapi: "3.0.0",
   info: {
-    title: "Projeto de Software Para Administração da sua obra",
+    title: "Um software para ajudar a administrar o tempo da construção",
     version: "1.0.0",
     description:
-      "Uma sistema para gerenciamento de obras, com cadastro de funcionários, produtos e construções",
+      "Voce sabe quando aquela construção vai acabar? Nao? Entao esse software vai te ajudar a saber.",
   },
   servers: [
     {
