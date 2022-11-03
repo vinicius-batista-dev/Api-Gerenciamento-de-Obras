@@ -8,7 +8,18 @@ const db = require("./models");
 const port = process.env.PORT || 4000;
 
 const corsOptions = {
-  origin: "https://api-service-tahz.onrender.com" + "/api-docs",
+  origin:
+    "https://api-service-tahz.onrender.com" +
+    "/api-docs" +
+    "/api/auth" +
+    "/api/auth/signup" +
+    "/api/auth/signin" +
+    "/api/auth/logout" +
+    "/api/construcao" +
+    "/api/construcao/:id" +
+    "/api/construcao" +
+    "/api/construcao/:id" +
+    "/api/construcao/:id",
   port: 10000,
   isDev: true,
   optionsSuccessStatus: 200,
