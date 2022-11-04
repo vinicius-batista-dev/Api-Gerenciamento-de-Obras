@@ -14,6 +14,8 @@ corsOptions = {
   forwarded: true,
 };
 
+app.use(cors());
+
 const swaggerDocument = {
   openapi: "3.0.0",
   info: {
@@ -692,20 +694,6 @@ const swaggerDocument = {
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
-
-app.use(bodyParser.urlencoded({ extended: true }));
-
-app.use(bodyParser.json());
-app.use(
-  cors(
-    corsOptions,
-    { origin: true },
-    { credentials: true },
-    { methods: "GET,HEAD,PUT,PATCH,POST,DELETE" },
-    { preflightContinue: false },
-    { optionsSuccessStatus: 204 }
-  )
-);
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
