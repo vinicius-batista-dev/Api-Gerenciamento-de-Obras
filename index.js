@@ -7,14 +7,15 @@ const db = require("./models");
 
 const port = process.env.PORT || 4000;
 
-corsOptions = {
-  origin: "https://api-service-tahz.onrender.com",
-  optionsSuccessStatus: 200, // For legacy browser support
-  credentials: true, // This is important.
-  forwarded: true,
-};
+// corsOptions = {
+//   origin: "https://api-service-tahz.onrender.com",
+//   optionsSuccessStatus: 200, // For legacy browser support
+//   credentials: true, // This is important.
+//   forwarded: true,
+// };
 
 app.use(cors());
+app.use(bodyParser.json());
 
 const swaggerDocument = {
   openapi: "3.0.0",

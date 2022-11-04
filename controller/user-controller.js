@@ -8,6 +8,7 @@ var bcrypt = require("bcryptjs");
 const User = database.user;
 
 exports.signup = async (req, res) => {
+  console.log("Teste" + req.body);
   if (!req.body.email || !req.body.password || !req.body.username) {
     return res.status(400).send({
       message: "Nao pode estar vazio user",
