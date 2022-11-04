@@ -1,8 +1,8 @@
 module.exports = {
-  host: "us-cdbr-east-06.cleardb.net",
-  user: "bc4f99da317e0f",
-  password: "da3f2a46",
-  database: "heroku_0bf3f2af96c99ce",
+  host: "o2olb7w3xv09alub.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
+  user: "sjxlzr1unohwwa1e",
+  password: "b1uhnuo4h598dqv1",
+  database: "fxrz0i57y5f1xqx9",
   port: 3306,
   dialect: "mysql",
   protocol: "mysql",
