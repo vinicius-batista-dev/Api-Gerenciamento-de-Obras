@@ -7,14 +7,14 @@ const db = require("./models");
 
 const port = process.env.PORT || 4000;
 
-// corsOptions = {
-//   origin: "https://api-service-tahz.onrender.com",
-//   optionsSuccessStatus: 200, // For legacy browser support
-//   credentials: true, // This is important.
-//   forwarded: true,
-// };
+//https://api-cloud-gerencia.herokuapp.com
 
-app.use(cors());
+corsOptions = {
+  origin: "https://api-cloud-gerencia.herokuapp.com",
+};
+
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 
 const swaggerDocument = {
@@ -692,9 +692,7 @@ const swaggerDocument = {
   },
 };
 
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+db.sequelize.sync();
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
