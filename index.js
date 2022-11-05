@@ -9,12 +9,7 @@ const port = process.env.PORT || 4000;
 
 //https://api-cloud-gerencia.herokuapp.com
 
-app.use(
-  cors({
-    origin: "https://api-cloud-gerencia.herokuapp.com",
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(bodyParser.json());
 
