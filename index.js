@@ -23,7 +23,10 @@ const swaggerDocument = {
   },
   servers: [
     {
-      url: `http://localhost:${port}`,
+      url:
+        process.env.NODE_ENV === "development"
+          ? `http://localhost:${port}`
+          : "https://api-cloud-gerencia.herokuapp.com",
     },
   ],
 
