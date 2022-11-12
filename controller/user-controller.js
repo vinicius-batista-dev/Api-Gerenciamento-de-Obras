@@ -144,6 +144,30 @@ exports.deleteUser = async (req, res) => {
   }
 };
 
+exports.updateUser = async (req, res) => {
+  try {
+    const user = await User.findOne({ where: { id: req.userId } });
+    if (!user) {
+      return res.status(404).send({ message: "Usuario nao encontrado" });
+    }
+    await User.update(
+      {
+        username,
+        email,
+        password,
+      },
+      {
+        where: {
+          id: req.userId,
+        },
+      }
+    );
+    res.send({ message: "Usuario atualizado com sucesso!" });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
+};
+
 function validateRequest(req) {
   if (!req.body) {
     res.status(400).send({
