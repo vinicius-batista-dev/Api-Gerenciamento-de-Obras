@@ -129,6 +129,32 @@ exports.findAll = async (req, res) => {
   }
 };
 
+//Deve deletar o usuario pelo id
+exports.delete = (req, res) => {
+  const id = req.params.id;
+
+  User.destroy({
+    where: { id: id },
+  })
+
+    .then((num) => {
+      if (num == 1) {
+        res.send({
+          message: "Usuario deletado com sucesso",
+        });
+      } else {
+        res.send({
+          message: "Nao foi possivel deletar o usuario",
+        });
+      }
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: "Nao foi possivel deletar o usuario",
+      });
+    });
+};
+
 exports.deleteUser = async (req, res) => {
   try {
     const user = await User.findOne({ where: { id: req.userId } });
