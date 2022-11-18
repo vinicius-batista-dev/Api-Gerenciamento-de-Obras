@@ -22,7 +22,7 @@ exports.create = (req, res) => {
     dataFim: req.body.dataFim,
     horaInicio: req.body.horaInicio,
     horaFim: req.body.horaFim,
-    funcionarioId: req.body.funcionarioId,
+    status: req.body.status ? req.body.status : false,
   };
 
   Construcao.create(construcao)

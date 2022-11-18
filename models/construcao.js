@@ -25,6 +25,10 @@ module.exports = (sequelize, Sequelize) => {
     horaFim: {
       type: Sequelize.TIME,
     },
+
+    status: {
+      type: Sequelize.BOOLEAN,
+    },
   });
 
   return Construcao;
