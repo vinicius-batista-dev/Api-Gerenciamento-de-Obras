@@ -27,7 +27,7 @@ module.exports = (sequelize, Sequelize) => {
     },
 
     status: {
-      type: Sequelize.BOOLEAN,
+      type: Sequelize.STRING,
     },
   });
 
