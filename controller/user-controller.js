@@ -7,39 +7,34 @@ var bcrypt = require("bcryptjs");
 
 const User = database.user;
 
+//Deve criar o usuario e verificar se ele e admin ou nao
 exports.signup = async (req, res) => {
-  console.log("Teste" + req.body);
-  if (!req.body.email || !req.body.password || !req.body.username) {
-    return res.status(400).send({
-      message: "Nao pode estar vazio user",
+  // Validate request
+  if (!req.body.username || !req.body.email || !req.body.password) {
+    res.status(400).send({
+      message: "Nao pode estar vazio!",
     });
+    return;
   }
 
-  if (!validarEmail.validate(req.body.email)) {
-    return res.status(400).send({
-      message: "Email invalido",
-    });
-  }
+  // Create a User
+  const user = {
+    username: req.body.username,
+    email: req.body.email,
+    password: bcrypt.hashSync(req.body.password, 8),
+    role: req.body.role,
+  };
 
-  const userExists = await User.findOne({ where: { email: req.body.email } });
-
-  if (userExists) {
-    return res.status(400).send({
-      message: "Email Ja cadastrado",
+  // Save User in the database
+  User.create(user)
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send({
+        message: err.message || "Algum erro ocorreu ao criar o usuario.",
+      });
     });
-  }
-  try {
-    await User.create({
-      username: req.body.username,
-      email: req.body.email,
-      password: bcrypt.hashSync(req.body.password, 8),
-      token: "",
-      role: "USER",
-    });
-    return res.status(200).send({ message: "Usuario registrado com sucesso!" });
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
 };
 
 exports.signin = async (req, res) => {
@@ -124,18 +119,11 @@ exports.logout = async (req, res) => {
   }
 };
 
-exports.UserById = async (req, res) => {
+//Deve listar todos os usuarios
+exports.findAll = async (req, res) => {
   try {
-    const user = await User.findOne({ where: { id: req.userId } });
-    if (!user) {
-      return res.status(404).send({ message: "Usuario nao encontrado" });
-    }
-    return res.status(200).send({
-      id: user.id,
-      email: user.email,
-      username: user.username,
-      role: user.role,
-    });
+    const users = await User.findAll();
+    res.send(users);
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
