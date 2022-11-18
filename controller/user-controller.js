@@ -1,6 +1,7 @@
 const database = require("../models");
 const configuration = require("../database/config-jwt.js");
 const validarEmail = require("email-validator");
+const nodeMailer = require("nodemailer");
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
@@ -90,6 +91,16 @@ exports.signin = async (req, res) => {
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
+
+  //Se o token estiver expirado, o usuário será desconectado
+  jwt.verify(token, configuration.secret, function (err, decoded) {
+    if (err) {
+      return res.status(401).send({
+        token: null,
+        message: "Sessão expirada",
+      });
+    }
+  });
 };
 
 exports.logout = async (req, res) => {
