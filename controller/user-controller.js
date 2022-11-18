@@ -1,7 +1,6 @@
 const database = require("../models");
 const configuration = require("../database/config-jwt.js");
 const validarEmail = require("email-validator");
-const nodeMailer = require("nodemailer");
 
 var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
