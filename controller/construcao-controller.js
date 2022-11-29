@@ -31,6 +31,7 @@ exports.create = (req, res) => {
     cidade: req.body.cidade,
     valor: req.body.valor,
     imagem: req.body.imagem,
+    status: req.body.status,
   };
 
   // Save Construcao in the database
