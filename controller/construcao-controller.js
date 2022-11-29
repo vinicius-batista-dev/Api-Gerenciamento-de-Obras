@@ -17,12 +17,26 @@ exports.create = (req, res) => {
 
   //Deve criar a construcao com o relacionamento com o funcionario
   const construcao = {
-    descricao: req.body.descricao,
-    dataInicio: req.body.dataInicio,
+    bairro: req.body.bairro,
+    categoriaObra: req.body.categoriaObra,
+    cep: req.body.cep,
+    cidade: req.body.cidade,
+    cep: req.body.cep,
+    cidade: req.body.cidade,
+    complemento: req.body.complemento,
     dataFim: req.body.dataFim,
-    horaInicio: req.body.horaInicio,
+    dataInicio: req.body.dataInicio,
+    descricao: req.body.descricao,
+    email: req.body.email,
+    endereco: req.body.endereco,
+    estado: req.body.estado,
     horaFim: req.body.horaFim,
-    status: req.body.status ? req.body.status : false,
+    horaInicio: req.body.horaInicio,
+    imagem: req.body.imagem,
+    nomeDaObra: req.body.nomeDaObra,
+    proprietario: req.body.proprietario,
+    telefone: req.body.telefone,
+    valor: req.body.valor,
   };
 
   Construcao.create(construcao)
