@@ -26,8 +26,56 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.TIME,
     },
 
-    status: {
+    nomeDaObra: {
       type: Sequelize.STRING,
+    },
+
+    categoriaObra: {
+      type: Sequelize.STRING,
+    },
+
+    cep: {
+      type: Sequelize.STRING,
+    },
+
+    bairro: {
+      type: Sequelize.STRING,
+    },
+
+    estado: {
+      type: Sequelize.STRING,
+    },
+
+    endereco: {
+      type: Sequelize.STRING,
+    },
+
+    email: {
+      type: Sequelize.STRING,
+    },
+
+    proprietario: {
+      type: Sequelize.STRING,
+    },
+
+    telefone: {
+      type: Sequelize.STRING,
+    },
+
+    complemento: {
+      type: Sequelize.STRING,
+    },
+
+    cidade: {
+      type: Sequelize.STRING,
+    },
+
+    valor: {
+      type: Sequelize.STRING,
+    },
+
+    imagem: {
+      type: Sequelize.BLOB,
     },
   });
 
