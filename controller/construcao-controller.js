@@ -4,12 +4,6 @@ const Construcao = database.construcao;
 // Path: controller/construcao-controller.js
 exports.create = (req, res) => {
   // Validate request
-  if (!req.body.nome) {
-    res.status(400).send({
-      message: "Content can not be empty!",
-    });
-    return;
-  }
 
   // Create a Construcao
   const construcao = {
