@@ -2,19 +2,6 @@ const database = require("../models");
 const Construcao = database.construcao;
 
 exports.create = (req, res) => {
-  if (
-    !req.body.descricao ||
-    !req.body.dataInicio ||
-    !req.body.dataFim ||
-    !req.body.horaInicio ||
-    !req.body.horaFim
-  ) {
-    res.status(400).send({
-      message: "Nao pode estar vazio construcao",
-    });
-    return;
-  }
-
   //Deve criar a construcao com o relacionamento com o funcionario
   const construcao = {
     bairro: req.body.bairro,
