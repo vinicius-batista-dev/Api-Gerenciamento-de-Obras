@@ -6,16 +6,43 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
     },
 
-    nomeDoProduto: {
+    nomeDoMaterial: {
       type: Sequelize.STRING,
     },
-    descricaoDoProduto: {
+
+    quantidadeDoMaterial: {
       type: Sequelize.STRING,
     },
-    vaiUsarParaQue: {
+
+    valorDoMaterial: {
       type: Sequelize.STRING,
     },
-    qtdProduto: {
+
+    categoriaDoMaterial: {
+      type: Sequelize.STRING,
+    },
+
+    fornecedorDoMaterial: {
+      type: Sequelize.STRING,
+    },
+
+    dataDeEntradaDoMaterial: {
+      type: Sequelize.DATE,
+    },
+
+    dataDeSaidaDoMaterial: {
+      type: Sequelize.DATE,
+    },
+
+    dataDeValidadeDoMaterial: {
+      type: Sequelize.DATE,
+    },
+
+    dataDeFabricacaoDoMaterial: {
+      type: Sequelize.DATE,
+    },
+
+    descricaoDoMaterial: {
       type: Sequelize.STRING,
     },
   });
