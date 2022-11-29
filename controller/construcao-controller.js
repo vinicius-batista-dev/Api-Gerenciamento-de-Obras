@@ -1,38 +1,47 @@
 const database = require("../models");
 const Construcao = database.construcao;
 
+// Path: controller/construcao-controller.js
 exports.create = (req, res) => {
-  //Deve criar a construcao com o relacionamento com o funcionario
+  // Validate request
+  if (!req.body.nome) {
+    res.status(400).send({
+      message: "Content can not be empty!",
+    });
+    return;
+  }
+
+  // Create a Construcao
   const construcao = {
-    bairro: req.body.bairro,
+    descricao: req.body.descricao,
+    dataInicio: req.body.dataInicio,
+    dataFim: req.body.dataFim,
+    horaInicio: req.body.horaInicio,
+    horaFim: req.body.horaFim,
+    nomeDaObra: req.body.nomeDaObra,
     categoriaObra: req.body.categoriaObra,
     cep: req.body.cep,
-    cidade: req.body.cidade,
-    cep: req.body.cep,
-    cidade: req.body.cidade,
-    complemento: req.body.complemento,
-    dataFim: req.body.dataFim,
-    dataInicio: req.body.dataInicio,
-    descricao: req.body.descricao,
-    email: req.body.email,
-    endereco: req.body.endereco,
+    bairro: req.body.bairro,
     estado: req.body.estado,
-    horaFim: req.body.horaFim,
-    horaInicio: req.body.horaInicio,
-    imagem: req.body.imagem,
-    nomeDaObra: req.body.nomeDaObra,
+    endereco: req.body.endereco,
+    email: req.body.email,
     proprietario: req.body.proprietario,
     telefone: req.body.telefone,
+    complemento: req.body.complemento,
+    cidade: req.body.cidade,
     valor: req.body.valor,
+    imagem: req.body.imagem,
   };
 
+  // Save Construcao in the database
   Construcao.create(construcao)
     .then((data) => {
       res.send(data);
     })
     .catch((err) => {
       res.status(500).send({
-        message: err.message || "Error ao criar uma construcao.",
+        message:
+          err.message || "Some error occurred while creating the Construcao.",
       });
     });
 };
