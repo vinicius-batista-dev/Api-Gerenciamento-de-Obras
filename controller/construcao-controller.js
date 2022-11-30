@@ -3,7 +3,33 @@ const Construcao = database.construcao;
 
 // Path: controller/construcao-controller.js
 exports.create = (req, res) => {
-  // Validate request
+  //Deve validar todos os campos antes de criar um novo construcao
+  if (
+    !req.body.descricao ||
+    !req.body.dataInicio ||
+    !req.body.dataFim ||
+    !req.body.horaInicio ||
+    !req.body.horaFim ||
+    !req.body.nomeDaObra ||
+    !req.body.categoriaObra ||
+    !req.body.cep ||
+    !req.body.bairro ||
+    !req.body.estado ||
+    !req.body.endereco ||
+    !req.body.email ||
+    !req.body.proprietario ||
+    !req.body.telefone ||
+    !req.body.complemento ||
+    !req.body.cidade ||
+    !req.body.valor ||
+    !req.body.imagem ||
+    !req.body.status
+  ) {
+    res.status(400).send({
+      message: "Nome nao pode ser vazio!",
+    });
+    return;
+  }
 
   // Create a Construcao
   const construcao = {

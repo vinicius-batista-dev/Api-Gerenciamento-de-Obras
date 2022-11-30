@@ -77,6 +77,10 @@ module.exports = (sequelize, Sequelize) => {
     imagem: {
       type: Sequelize.BLOB,
     },
+
+    status: {
+      type: Sequelize.STRING,
+    },
   });
 
   return Construcao;
