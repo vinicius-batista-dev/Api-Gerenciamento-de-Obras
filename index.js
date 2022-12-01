@@ -708,7 +708,7 @@ app.use(
   swaggerUi.setup(swaggerDocument, options)
 );
 
-app.get("/", (req, res) => {
+app.get("/teste", (req, res) => {
   res.send("App gerenciamento de obras working");
 });
 

@@ -1,0 +1,4 @@
+{
+  "appService.defaultWebAppToDeploy": "/subscriptions/450a8d50-846d-4d4f-aa93-2ff37c3aa7ae/AppServices/subscriptions/450a8d50-846d-4d4f-aa93-2ff37c3aa7ae/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/apicloudmsys",
+  "appService.deploySubpath": "."
+}
