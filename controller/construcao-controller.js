@@ -22,7 +22,6 @@ exports.create = (req, res) => {
     !req.body.complemento ||
     !req.body.cidade ||
     !req.body.valor ||
-    !req.body.imagem ||
     !req.body.status
   ) {
     res.status(400).send({
@@ -50,7 +49,6 @@ exports.create = (req, res) => {
     complemento: req.body.complemento,
     cidade: req.body.cidade,
     valor: req.body.valor,
-    imagem: req.body.imagem,
     status: req.body.status,
   };
 
