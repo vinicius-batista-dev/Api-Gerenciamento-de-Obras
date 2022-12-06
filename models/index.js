@@ -29,25 +29,16 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-//Um usuario pode ter varias construcoes
-db.user.hasMany(db.construcao, { as: "construcoes" });
-//Uma construcao pertence a um usuario logado
-db.construcao.belongsTo(db.user, {
-  foreignKey: "userId",
-  as: "user",
+//Um usuario pertence a uma construção
+db.user.belongsTo(db.construcao, {
+  foreignKey: "construcaoId",
+  as: "construcao",
 });
 
-db.user.associate = (models) => {
-  db.user.hasMany(models.construcao, {
-    as: "construcao",
-  });
-};
-
-db.construcao.associate = (models) => {
-  db.construcao.belongsTo(models.user, {
-    foreignKey: "userId",
-    as: "user",
-  });
-};
+//Uma construção tem varios usuarios
+db.construcao.hasMany(db.user, {
+  foreignKey: "construcaoId",
+  as: "users",
+});
 
 module.exports = db;

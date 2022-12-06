@@ -17,6 +17,11 @@ exports.signup = async (req, res) => {
     return;
   }
 
+  //Deve verificar se o usuario ja existe
+  if (await User.findOne({ where: { email: req.body.email } })) {
+    return res.status(400).send({ message: "Usuario ja cadastrado" });
+  }
+
   // Create a User
   const user = {
     username: req.body.username,
