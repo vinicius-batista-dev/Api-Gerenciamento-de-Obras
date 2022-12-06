@@ -21,6 +21,7 @@ exports.create = (req, res) => {
     email: req.body.email,
     proprietario: req.body.proprietario,
     imagem: req.files.imagem.data,
+    telefone: req.body.telefone,
   };
 
   // Save Construcao in the database
