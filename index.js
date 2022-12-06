@@ -1,4 +1,5 @@
 const app = require("express")();
+const express = require("express");
 const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -10,6 +11,9 @@ const port = process.env.PORT || 4000;
 //https://api-cloud-gerencia.herokuapp.com
 
 app.use(cors());
+
+//upload file
+app.use(express.static("public"));
 
 app.use(bodyParser.json());
 

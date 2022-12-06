@@ -1,35 +1,10 @@
 const database = require("../models");
 const Construcao = database.construcao;
+const fileUpload = require("express-fileupload");
 
 // Path: controller/construcao-controller.js
+//Deve ser criado um novo construcao com fileUpload
 exports.create = (req, res) => {
-  //Deve validar todos os campos antes de criar um novo construcao
-  if (
-    !req.body.descricao ||
-    !req.body.dataInicio ||
-    !req.body.dataFim ||
-    !req.body.horaInicio ||
-    !req.body.horaFim ||
-    !req.body.nomeDaObra ||
-    !req.body.categoriaObra ||
-    !req.body.cep ||
-    !req.body.bairro ||
-    !req.body.estado ||
-    !req.body.endereco ||
-    !req.body.email ||
-    !req.body.proprietario ||
-    !req.body.telefone ||
-    !req.body.complemento ||
-    !req.body.cidade ||
-    !req.body.valor ||
-    !req.body.status
-  ) {
-    res.status(400).send({
-      message: "Nome nao pode ser vazio!",
-    });
-    return;
-  }
-
   // Create a Construcao
   const construcao = {
     descricao: req.body.descricao,
@@ -45,12 +20,7 @@ exports.create = (req, res) => {
     endereco: req.body.endereco,
     email: req.body.email,
     proprietario: req.body.proprietario,
-    telefone: req.body.telefone,
-    complemento: req.body.complemento,
-    cidade: req.body.cidade,
-    valor: req.body.valor,
-    status: req.body.status,
-    imagem: req.body.imagem,
+    imagem: req.files.imagem.data,
   };
 
   // Save Construcao in the database
@@ -60,8 +30,7 @@ exports.create = (req, res) => {
     })
     .catch((err) => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Construcao.",
+        message: err.message || "Ocorreu um error ao criar uma construcao.",
       });
     });
 };
