@@ -26,15 +26,15 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
 
-    data_nascimento: {
+    dataNascimento: {
       type: Sequelize.DATE,
     },
 
-    data_admissao: {
+    dataAdmissao: {
       type: Sequelize.DATE,
     },
 
-    data_demissao: {
+    dataDemissao: {
       type: Sequelize.DATE,
     },
 
