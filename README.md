@@ -56,6 +56,13 @@ O objetivo deste projeto é criar uma API para gerenciar uma obra, onde o usuár
 - Cadastrar produtos
 - Cadastrar a obra
 
+## Para contribuir
+
+- Faça um fork do projeto
+- Crie uma branch com a sua feature: `git checkout -b my-feature`
+- Faça commit das suas alterações: `git commit -m 'feat: My new feature'`
+- Faça push para a sua branch: `git push origin my-feature`
+
 ### Autor
 
 - [Vinicius Batista]
