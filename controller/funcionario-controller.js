@@ -10,7 +10,6 @@ exports.create = (req, res) => {
     !req.body.email ||
     !req.body.cargo ||
     !req.body.salario ||
-    !req.body.telefone ||
     !req.body.data_nascimento ||
     !req.body.data_admissao ||
     !req.body.data_demissao ||
@@ -43,7 +42,7 @@ exports.create = (req, res) => {
     email: req.body.email,
     cargo: req.body.cargo,
     salario: req.body.salario,
-    telefone: req.body.telefone,
+    // telefone: req.body.telefone,
     data_nascimento: req.body.data_nascimento,
     data_admissao: req.body.data_admissao,
     data_demissao: req.body.data_demissao,
