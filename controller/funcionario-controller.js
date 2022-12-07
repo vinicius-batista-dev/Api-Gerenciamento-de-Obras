@@ -4,66 +4,18 @@ const emailValidator = require("email-validator");
 const validarCpf = require("../utils/validarCpf");
 
 exports.create = (req, res) => {
-  if (!req.body.nome) {
+  if (
+    !req.body.nome ||
+    !req.body.cpf ||
+    !req.body.email ||
+    !req.body.cargo ||
+    !req.body.salario ||
+    !req.body.data_nascimento ||
+    !req.body.data_admissao ||
+    !req.body.status
+  ) {
     res.status(400).send({
-      message: "Nome esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.cpf) {
-    res.status(400).send({
-      message: "Cpf esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.email) {
-    res.status(400).send({
-      message: "Email esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.cargo) {
-    res.status(400).send({
-      message: "Cargo esta em branco",
-    });
-
-    return;
-  }
-
-  if (!req.body.salario) {
-    res.status(400).send({
-      message: "Salario esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.data_nascimento) {
-    res.status(400).send({
-      message: "Data de nascimento esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.data_admissao) {
-    res.status(400).send({
-      message: "Data de admissao esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.data_demissao) {
-    res.status(400).send({
-      message: "Data de demissao esta em branco",
-    });
-    return;
-  }
-
-  if (!req.body.status) {
-    res.status(400).send({
-      message: "Status esta em branco",
+      message: "Todos os campos sao obrigatorios",
     });
     return;
   }
