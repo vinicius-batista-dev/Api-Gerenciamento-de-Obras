@@ -1,50 +1,47 @@
 module.exports = (sequelize, Sequelize) => {
-  const Produto = sequelize.define("produto", {
+  const Produto = sequelize.define("material", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
 
-    nomeDoMaterial: {
+    nome: {
       type: Sequelize.STRING,
     },
 
-    quantidadeDoMaterial: {
+    descricao: {
       type: Sequelize.STRING,
     },
 
-    valorDoMaterial: {
+    preco: {
+      type: Sequelize.DOUBLE,
+    },
+
+    quantidade: {
+      type: Sequelize.INTEGER,
+    },
+
+    categoria: {
       type: Sequelize.STRING,
     },
 
-    categoriaDoMaterial: {
+    status: {
       type: Sequelize.STRING,
     },
 
-    fornecedorDoMaterial: {
+    fornecedor: {
       type: Sequelize.STRING,
     },
 
-    dataDeEntradaDoMaterial: {
+    data_entrada: {
       type: Sequelize.DATE,
     },
 
-    dataDeSaidaDoMaterial: {
+    data_saida: {
       type: Sequelize.DATE,
-    },
-
-    dataDeValidadeDoMaterial: {
-      type: Sequelize.DATE,
-    },
-
-    dataDeFabricacaoDoMaterial: {
-      type: Sequelize.DATE,
-    },
-
-    descricaoDoMaterial: {
-      type: Sequelize.STRING,
     },
   });
+
   return Produto;
 };

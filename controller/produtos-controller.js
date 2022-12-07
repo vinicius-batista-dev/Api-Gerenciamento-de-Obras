@@ -5,10 +5,15 @@ exports.create = async (req, res) => {
   console.log(req.body);
   try {
     if (
-      !req.body.nomeDoProduto ||
-      !req.body.descricaoDoProduto ||
-      !req.body.qtdProduto ||
-      !req.body.vaiUsarParaQue
+      !req.body.nome ||
+      !req.body.descricao ||
+      !req.body.preco ||
+      !req.body.quantidade ||
+      !req.body.categoria ||
+      !req.body.status ||
+      !req.body.fornecedor ||
+      !req.body.data_entrada ||
+      !req.body.data_saida
     ) {
       res.status(400).send({
         message: "Nao pode estar vazio produto",
@@ -16,10 +21,15 @@ exports.create = async (req, res) => {
     }
 
     const produto = {
-      nomeDoProduto: req.body.nomeDoProduto,
-      descricaoDoProduto: req.body.descricaoDoProduto,
-      qtdProduto: req.body.qtdProduto,
-      vaiUsarParaQue: req.body.vaiUsarParaQue,
+      nome: req.body.nome,
+      descricao: req.body.descricao,
+      preco: req.body.preco,
+      quantidade: req.body.quantidade,
+      categoria: req.body.categoria,
+      status: req.body.status,
+      fornecedor: req.body.fornecedor,
+      data_entrada: req.body.data_entrada,
+      data_saida: req.body.data_saida,
     };
 
     await Produto.create(produto)
