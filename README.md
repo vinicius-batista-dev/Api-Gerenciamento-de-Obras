@@ -6,12 +6,12 @@ O objetivo deste projeto é criar uma API para gerenciar uma obra, onde o usuár
 
 ### Tecnologias
 
-- NodeJS
-- Express
-- MySQL
-- Sequelize
-- JWT
-- Bcrypt
+- NodeJS -> https://nodejs.org/en/
+- Express -> https://expressjs.com/pt-br/
+- MySQL -> https://www.mysql.com/
+- Sequelize -> https://sequelize.org/
+- JWT -> https://jwt.io/
+- Bcrypt -> https://www.npmjs.com/package/bcrypt
 
 ### Instalação
 
