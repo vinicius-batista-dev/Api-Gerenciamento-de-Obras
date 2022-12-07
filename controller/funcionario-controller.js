@@ -5,27 +5,31 @@ const validarCpf = require("../utils/validarCpf");
 
 exports.create = (req, res) => {
   if (
-    !req.body.nomeDoFuncionario ||
-    !req.body.cpfDoFuncionario ||
-    !req.body.emailDoFuncionario ||
-    !req.body.cargoDoFuncionario ||
-    !req.body.salarioDoFuncionario ||
-    !req.body.telefoneDoFuncionario
+    !req.body.nome ||
+    !req.body.cpf ||
+    !req.body.email ||
+    !req.body.cargo ||
+    !req.body.salario ||
+    !req.body.telefone ||
+    !req.body.data_nascimento ||
+    !req.body.data_admissao ||
+    !req.body.data_demissao ||
+    !req.body.status
   ) {
     res.status(400).send({
-      message: "Nao pode estar vazio funcionario",
+      message: "O campo nao pode estar vazio!",
     });
     return;
   }
 
-  if (!emailValidator.validate(req.body.emailDoFuncionario)) {
+  if (!emailValidator.validate(req.body.email)) {
     res.status(400).send({
       message: "Email invalido",
     });
     return;
   }
 
-  if (!validarCpf(req.body.cpfDoFuncionario)) {
+  if (!validarCpf(req.body.cpf)) {
     res.status(400).send({
       message: "Cpf invalido",
     });
@@ -34,12 +38,16 @@ exports.create = (req, res) => {
 
   //funcionario esta relacionado com construcao
   const funcionario = {
-    nomeDoFuncionario: req.body.nomeDoFuncionario,
-    cpfDoFuncionario: req.body.cpfDoFuncionario,
-    emailDoFuncionario: req.body.emailDoFuncionario,
-    cargoDoFuncionario: req.body.cargoDoFuncionario,
-    salarioDoFuncionario: req.body.salarioDoFuncionario,
-    telefoneDoFuncionario: req.body.telefoneDoFuncionario,
+    nome: req.body.nome,
+    cpf: req.body.cpf,
+    email: req.body.email,
+    cargo: req.body.cargo,
+    salario: req.body.salario,
+    telefone: req.body.telefone,
+    data_nascimento: req.body.data_nascimento,
+    data_admissao: req.body.data_admissao,
+    data_demissao: req.body.data_demissao,
+    status: req.body.status,
   };
 
   Funcionario.create(funcionario)

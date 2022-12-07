@@ -6,27 +6,39 @@ module.exports = (sequelize, Sequelize) => {
       autoIncrement: true,
     },
 
-    nomeDoFuncionario: {
+    nome: {
       type: Sequelize.STRING,
     },
 
-    emailDoFuncionario: {
+    email: {
       type: Sequelize.STRING,
     },
 
-    telefoneDoFuncionario: {
+    cargo: {
       type: Sequelize.STRING,
     },
 
-    cpfDoFuncionario: {
+    salario: {
+      type: Sequelize.DOUBLE,
+    },
+
+    cpf: {
       type: Sequelize.STRING,
     },
 
-    cargoDoFuncionario: {
-      type: Sequelize.STRING,
+    data_nascimento: {
+      type: Sequelize.DATE,
     },
 
-    salarioDoFuncionario: {
+    data_admissao: {
+      type: Sequelize.DATE,
+    },
+
+    data_demissao: {
+      type: Sequelize.DATE,
+    },
+
+    status: {
       type: Sequelize.STRING,
     },
   });
