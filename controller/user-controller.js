@@ -42,39 +42,32 @@ exports.signup = async (req, res) => {
     });
 };
 
+//Um usuario que logar nao podera ter acesso aos dados de outro usuario
 exports.signin = async (req, res) => {
-  if (!req.body.email || !req.body.password)
-    return res.status(400).send({
-      message: "Nao pode estar vazio",
-    });
-
   try {
     const user = await User.findOne({ where: { email: req.body.email } });
-
     if (!user) {
-      return res
-        .status(404)
-        .send({ token: null, message: "Usuario ou Senha Invalida" });
+      return res.status(404).send({ message: "Usuario nao encontrado" });
     }
 
-    const passwordIsValid = bcrypt.compareSync(
-      req.body.password,
-      user.password
-    );
+    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
 
     if (!passwordIsValid) {
       return res.status(401).send({
         token: null,
-        message: "Usuario ou Senha Invalida",
+        message: "Senha invalida",
       });
     }
 
     var token = jwt.sign({ id: user.id }, configuration.secret, {
-      expiresIn: "7d",
+      expiresIn: 86400, // expires in 24 hours
     });
 
     await User.update(
-      { token },
+      //Atualiza o token do usuario
+      {
+        token,
+      },
       {
         where: {
           id: user.id,
@@ -82,24 +75,16 @@ exports.signin = async (req, res) => {
       }
     );
 
-    return res.status(200).send({
+    res.status(200).send({
       id: user.id,
+      username: user.username,
       email: user.email,
-      token,
+      role: user.role,
+      token: token,
     });
   } catch (err) {
     res.status(500).send({ message: err.message });
   }
-
-  //Se o token estiver expirado, o usuário será desconectado
-  jwt.verify(token, configuration.secret, function (err, decoded) {
-    if (err) {
-      return res.status(401).send({
-        token: null,
-        message: "Sessão expirada",
-      });
-    }
-  });
 };
 
 exports.logout = async (req, res) => {
