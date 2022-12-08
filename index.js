@@ -695,7 +695,9 @@ const swaggerDocument = {
   },
 };
 
-db.sequelize.sync();
+db.sequelize.sync({
+  force: false,
+});
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
