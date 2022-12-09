@@ -1,5 +1,6 @@
 const configuration = require("../database/config-db.js");
-const Sequelize = require("sequelize");
+const { Sequelize } = require("sequelize");
+const { QueryTypes } = require("sequelize");
 const user = require("./user.js");
 
 const sequelize = new Sequelize(
@@ -28,17 +29,5 @@ db.user = require("./user.js")(sequelize, Sequelize);
 db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
-
-//Um usuario pertence a uma construção
-db.user.belongsTo(db.construcao, {
-  foreignKey: "construcaoId",
-  as: "construcao",
-});
-
-//Uma construção tem varios usuarios
-db.construcao.hasMany(db.user, {
-  foreignKey: "construcaoId",
-  as: "users",
-});
 
 module.exports = db;
