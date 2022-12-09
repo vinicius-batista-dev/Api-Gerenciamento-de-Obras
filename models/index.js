@@ -67,16 +67,4 @@ sequelize
     console.log(users);
   });
 
-// //deve deletar o id 14
-// sequelize
-//   .query("DELETE FROM users WHERE id = 14", { type: QueryTypes.DELETE })
-//   .then((users) => {
-//     console.log(users);
-//   });
-
-//Todo usuario que tem o role USER pode criar um material
-
-//Mario nao pode acessar os dados de antonio
-//Antonio nao pode acessar os dados de mario
-
 module.exports = db;
