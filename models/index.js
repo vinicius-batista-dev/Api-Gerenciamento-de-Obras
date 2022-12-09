@@ -36,24 +36,10 @@ sequelize
     console.log(users);
   });
 
-//todos os usarios deve receber um role como USER
 sequelize
-  .query("UPDATE users SET role = 'USER' WHERE role IS NULL", {
-    type: QueryTypes.UPDATE,
-  })
-  .then((users) => {
-    console.log(users);
-  });
-
-sequelize
-  .query(
-    "ALTER TABLE construcao ADD FOREIGN KEY (user_id) REFERENCES users(id);",
-    {
-      type: QueryTypes.UPDATE,
-    }
-  )
-  .then((users) => {
-    console.log(users);
+  .query("SELECT * FROM materials", { type: QueryTypes.SELECT })
+  .then((construcao) => {
+    console.log(construcao);
   });
 
 module.exports = db;
