@@ -24,7 +24,7 @@ verifyToken = async (req, res, next) => {
     //Deve verificar se outro usuario nao esta usando o token de outro usuario
     if (tokenExists.id !== req.params.id) {
       return res.status(403).send({
-        message: "token invalid",
+        message: "token invalido!",
       });
     }
 
