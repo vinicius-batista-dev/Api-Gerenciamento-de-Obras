@@ -42,4 +42,41 @@ sequelize
     console.log(construcao);
   });
 
+sequelize
+  .query("SELECT * FROM funcionarios", { type: QueryTypes.SELECT })
+  .then((funcionario) => {
+    console.log(funcionario);
+  });
+
+// db.user.hasMany(db.construcao, { as: "construcao" });
+// db.construcao.belongsTo(db.user, {
+//   foreignKey: "userId",
+//   as: "user",
+// })
+
+// db.user.hasMany(db.funcionario, { as: "funcionarios" });
+// db.funcionario.belongsTo(db.user, {
+//   foreignKey: "userId",
+//   as: "user",
+// });
+
+//Deve atualizar todos os role dos usuarios para USER
+sequelize
+  .query("UPDATE users SET role = 'USER'", { type: QueryTypes.UPDATE })
+  .then((users) => {
+    console.log(users);
+  });
+
+// //deve deletar o id 14
+// sequelize
+//   .query("DELETE FROM users WHERE id = 14", { type: QueryTypes.DELETE })
+//   .then((users) => {
+//     console.log(users);
+//   });
+
+//Todo usuario que tem o role USER pode criar um material
+
+//Mario nao pode acessar os dados de antonio
+//Antonio nao pode acessar os dados de mario
+
 module.exports = db;
