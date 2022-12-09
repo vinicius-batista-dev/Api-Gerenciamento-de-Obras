@@ -50,11 +50,6 @@ exports.signin = async (req, res) => {
       return res.status(404).send({ message: "Usuario nao encontrado" });
     }
 
-    //Se token existir, nao pode logar
-    if (user.token || user.token != null) {
-      return res.status(401).send({ message: "Usuario ja logado" });
-    }
-
     if (!validarEmail.validate(req.body.email)) {
       return res.status(400).send({ message: "Email invalido" });
     }
