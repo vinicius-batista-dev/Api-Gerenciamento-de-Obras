@@ -48,23 +48,35 @@ sequelize
     console.log(funcionario);
   });
 
-// db.user.hasMany(db.construcao, { as: "construcao" });
-// db.construcao.belongsTo(db.user, {
-//   foreignKey: "userId",
-//   as: "user",
-// })
+sequelize
+  .query("SELECT * FROM construcaos", { type: QueryTypes.SELECT })
+  .then((construcao) => {
+    console.log(construcao);
+  });
 
-// db.user.hasMany(db.funcionario, { as: "funcionarios" });
-// db.funcionario.belongsTo(db.user, {
-//   foreignKey: "userId",
-//   as: "user",
-// });
-
-//Deve atualizar todos os role dos usuarios para USER
 sequelize
   .query("UPDATE users SET role = 'USER'", { type: QueryTypes.UPDATE })
   .then((users) => {
     console.log(users);
   });
+
+//Deve associar as tabelas aqui para que o sequelize entenda a relação entre elas e crie as FKs
+db.user.hasMany(db.construcao, { as: "construcaos" });
+db.construcao.belongsTo(db.user, {
+  foreignKey: "userId",
+  as: "users",
+});
+
+db.user.hasMany(db.funcionario, { as: "funcionarios" });
+db.funcionario.belongsTo(db.user, {
+  foreignKey: "userId",
+  as: "users",
+});
+
+db.user.hasMany(db.produto, { as: "materials" });
+db.produto.belongsTo(db.user, {
+  foreignKey: "userId",
+  as: "users",
+});
 
 module.exports = db;
