@@ -30,4 +30,30 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
+sequelize
+  .query("SELECT * FROM users", { type: QueryTypes.SELECT })
+  .then((users) => {
+    console.log(users);
+  });
+
+//todos os usarios deve receber um role como USER
+sequelize
+  .query("UPDATE users SET role = 'USER' WHERE role IS NULL", {
+    type: QueryTypes.UPDATE,
+  })
+  .then((users) => {
+    console.log(users);
+  });
+
+sequelize
+  .query(
+    "ALTER TABLE construcao ADD FOREIGN KEY (user_id) REFERENCES users(id);",
+    {
+      type: QueryTypes.UPDATE,
+    }
+  )
+  .then((users) => {
+    console.log(users);
+  });
+
 module.exports = db;
