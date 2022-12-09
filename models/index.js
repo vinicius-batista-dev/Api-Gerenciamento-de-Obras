@@ -30,53 +30,60 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-sequelize
-  .query("SELECT * FROM users", { type: QueryTypes.SELECT })
-  .then((users) => {
-    console.log(users);
-  });
-
-sequelize
-  .query("SELECT * FROM materials", { type: QueryTypes.SELECT })
-  .then((construcao) => {
-    console.log(construcao);
-  });
-
-sequelize
-  .query("SELECT * FROM funcionarios", { type: QueryTypes.SELECT })
-  .then((funcionario) => {
-    console.log(funcionario);
-  });
-
-sequelize
-  .query("SELECT * FROM construcaos", { type: QueryTypes.SELECT })
-  .then((construcao) => {
-    console.log(construcao);
-  });
-
-sequelize
-  .query("UPDATE users SET role = 'USER'", { type: QueryTypes.UPDATE })
-  .then((users) => {
-    console.log(users);
-  });
-
-//Deve associar as tabelas aqui para que o sequelize entenda a relação entre elas e crie as FKs
 db.user.hasMany(db.construcao, { as: "construcaos" });
 db.construcao.belongsTo(db.user, {
   foreignKey: "userId",
-  as: "users",
+  as: "user",
 });
 
 db.user.hasMany(db.funcionario, { as: "funcionarios" });
 db.funcionario.belongsTo(db.user, {
   foreignKey: "userId",
-  as: "users",
+  as: "user",
 });
 
 db.user.hasMany(db.produto, { as: "materials" });
 db.produto.belongsTo(db.user, {
   foreignKey: "userId",
-  as: "users",
+  as: "user",
 });
+
+//Deve atualizar cada usuario para ter um id de construcao
+sequelize
+  .query("ALTER TABLE users ADD construcaoId INTEGER", {
+    type: QueryTypes.UPDATE,
+  })
+  .then(() => {
+    console.log("Alterado com sucesso");
+  })
+  .catch((err) => {
+    console.log("Erro ao alterar: ", err);
+  });
+
+//Deve atualizar cada usuario para ter um id de funcionario
+sequelize
+  .query("ALTER TABLE users ADD funcionarioId INTEGER", {
+    type: QueryTypes.UPDATE,
+  })
+  .then(() => {
+    console.log("Alterado com sucesso");
+  })
+  .catch((err) => {
+    console.log("Erro ao alterar: ", err);
+  });
+
+//Deve atualizar cada usuario para ter um id de produto
+sequelize
+  .query("ALTER TABLE users ADD produtoId INTEGER", {
+    type: QueryTypes.UPDATE,
+  })
+  .then(() => {
+    console.log("Alterado com sucesso");
+  })
+  .catch((err) => {
+    console.log("Erro ao alterar: ", err);
+  });
+
+
 
 module.exports = db;

@@ -30,7 +30,7 @@ exports.create = (req, res) => {
     return;
   }
 
-  // Create a Construcao
+  //O user esta relacionado com construcao
   const construcao = {
     descricao: req.body.descricao,
     dataInicio: req.body.dataInicio,
@@ -50,7 +50,7 @@ exports.create = (req, res) => {
     cidade: req.body.cidade,
     valor: req.body.valor,
     status: req.body.status,
-    imagem: req.body.imagem,
+    userId: req.body.userId,
   };
 
   // Save Construcao in the database

@@ -82,6 +82,7 @@ exports.create = (req, res) => {
     dataAdmissao: req.body.dataAdmissao,
     dataDemissao: req.body.dataDemissao,
     status: req.body.status,
+    userId: req.userId,
   };
 
   //Salvar o funcionario no banco de dados

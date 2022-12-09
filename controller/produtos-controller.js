@@ -14,6 +14,7 @@ exports.create = async (req, res) => {
       fornecedor: req.body.fornecedor,
       data_entrada: req.body.data_entrada,
       data_saida: req.body.data_saida,
+      userId: req.body.userId,
     };
 
     await Produto.create(produto)

@@ -12,10 +12,9 @@ const port = process.env.PORT || 4000;
 
 app.use(cors());
 
-//upload file
-app.use(express.static("public"));
-
 app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const swaggerDocument = {
   openapi: "3.0.0",
@@ -695,7 +694,9 @@ const swaggerDocument = {
   },
 };
 
-db.sequelize.sync();
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
