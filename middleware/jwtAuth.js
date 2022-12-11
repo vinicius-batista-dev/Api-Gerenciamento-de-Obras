@@ -4,34 +4,32 @@ const database = require("../models");
 
 const User = database.user;
 
-verifyToken = async (req, res, next) => {
-  const authToken = req.headers["authorization"];
+//Voce nao esta autorizado para acessar os dados de outro usuario
+verifyToken = (req, res, next) => {
+  let token = req.headers["x-access-token"];
 
-  if (authToken != undefined) {
-    const bearer = authToken.split(" ");
-    const token = bearer[1];
-    try {
-      const decoded = jwt.verify(token, configuration.secret);
+  if (!token) {
+    return res.status(403).send({
+      message: "No token provided!",
+    });
 
-      if (decoded.role == 1) {
-        const bearer = authToken.split(" ");
-        const token = bearer[1];
+    jwt.verify(token, configuration.secret, (err, decoded) => {
+      if (err) {
+        return res.status(401).send({
+          message: "Unauthorized!",
+        });
 
-        try {
-          const decoded = jwt.verify(token, configuration.secret);
-          req.userId = decoded.id;
+        //Verifica se o usuario existe
+        User.findByPk(decoded.id).then((user) => {
+          if (!user) {
+            return res.status(404).send({
+              message: "User Not found.",
+            });
+          }
           next();
-        } catch (err) {
-          res.status(401).json({ message: "Token inválido" });
-        }
-      } else {
-        res.status(401).json({ message: "Você não tem permissão" });
+        });
       }
-    } catch (err) {
-      res.status(401).json({ message: "Token inválido" });
-    }
-  } else {
-    res.status(401).json({ message: "Você não está logado" });
+    });
   }
 };
 
