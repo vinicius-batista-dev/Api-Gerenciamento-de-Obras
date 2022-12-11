@@ -85,6 +85,10 @@ exports.create = (req, res) => {
     userId: req.userId,
   };
 
+  if (req.body.userId) {
+    funcionario.userId = req.body.userId;
+  }
+
   //Salvar o funcionario no banco de dados
   Funcionario.create(funcionario)
     .then((data) => {

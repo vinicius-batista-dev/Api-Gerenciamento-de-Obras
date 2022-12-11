@@ -53,6 +53,10 @@ exports.create = (req, res) => {
     userId: req.body.userId,
   };
 
+  if (req.body.userId) {
+    construcao.userId = req.body.userId;
+  }
+
   // Save Construcao in the database
   Construcao.create(construcao)
     .then((data) => {

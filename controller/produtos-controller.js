@@ -17,6 +17,10 @@ exports.create = async (req, res) => {
       userId: req.body.userId,
     };
 
+    if (req.body.userId) {
+      produto.userId = req.body.userId;
+    }
+
     await Produto.create(produto)
       .then((data) => {
         res.send(data);

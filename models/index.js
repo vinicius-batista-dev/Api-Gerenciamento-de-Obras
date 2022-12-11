@@ -47,7 +47,7 @@ db.produto.belongsTo(db.user, {
   as: "user",
 });
 
-
+db.user.hasMany(db.user, { as: "users" });
 
 db.ROLES = ["user", "admin", "moderator"];
 
