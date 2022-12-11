@@ -16,8 +16,6 @@ exports.create = async (req, res) => {
       data_saida: req.body.data_saida,
     };
 
- 
-
     await Produto.create(produto)
       .then((data) => {
         res.send(data);
