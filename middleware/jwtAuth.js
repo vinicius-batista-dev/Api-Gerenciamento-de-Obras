@@ -5,43 +5,33 @@ const database = require("../models");
 const User = database.user;
 
 verifyToken = async (req, res, next) => {
-  try {
-    const token = req.headers.authorization.split(" ")[1];
+  const authToken = req.headers["authorization"];
 
-    if (!token) {
-      throw res.status(403).send({
-        message: "token nao econtrado!",
-      });
-    }
+  if (authToken != undefined) {
+    const bearer = authToken.split(" ");
+    const token = bearer[1];
+    try {
+      const decoded = jwt.verify(token, configuration.secret);
 
-    const tokenExists = jwt.verify(token, configuration.secret);
-    if (!tokenExists) {
-      throw res.status(403).send({
-        message: "token invalido!",
-      });
-    }
+      if (decoded.role == 1) {
+        const bearer = authToken.split(" ");
+        const token = bearer[1];
 
-    await User.findOne({
-      where: {
-        id: tokenExists.id,
-      },
-    }).then((user) => {
-      if (!user) {
-        return res.status(400).send({
-          message: "usuario nao econtrado",
-        });
-      } else if (user.token !== token) {
-        return res.status(400).send({
-          message: "token expirado",
-        });
+        try {
+          const decoded = jwt.verify(token, configuration.secret);
+          req.userId = decoded.id;
+          next();
+        } catch (err) {
+          res.status(401).json({ message: "Token inválido" });
+        }
+      } else {
+        res.status(401).json({ message: "Você não tem permissão" });
       }
-      req.userId = tokenExists.id;
-      next();
-    });
-  } catch (error) {
-    throw res.status(403).send({
-      message: "token nao econtrado!",
-    });
+    } catch (err) {
+      res.status(401).json({ message: "Token inválido" });
+    }
+  } else {
+    res.status(401).json({ message: "Você não está logado" });
   }
 };
 
