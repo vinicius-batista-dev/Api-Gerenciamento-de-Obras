@@ -4,31 +4,43 @@ const database = require("../models");
 
 const User = database.user;
 
-//Voce nao esta autorizado para acessar os dados de outro usuario
-verifyToken = (req, res, next) => {
-  let token = req.headers["x-access-token"];
+verifyToken = async (req, res, next) => {
+  try {
+    const token = req.headers["x-access-token"];
 
-  if (!token) {
-    return res.status(403).send({
-      message: "No token provided!",
-    });
+    if (!token) {
+      throw res.status(403).send({
+        message: "token nao econtrado!",
+      });
+    }
 
-    jwt.verify(token, configuration.secret, (err, decoded) => {
-      if (err) {
-        return res.status(401).send({
-          message: "Unauthorized!",
+    const tokenExists = jwt.verify(token, configuration.secret);
+    if (!tokenExists) {
+      throw res.status(403).send({
+        message: "token invalido!",
+      });
+    }
+
+    await User.findOne({
+      where: {
+        id: tokenExists.id,
+      },
+    }).then((user) => {
+      if (!user) {
+        return res.status(400).send({
+          message: "usuario nao econtrado",
         });
-
-        //Verifica se o usuario existe
-        User.findByPk(decoded.id).then((user) => {
-          if (!user) {
-            return res.status(404).send({
-              message: "User Not found.",
-            });
-          }
-          next();
+      } else if (user.token !== token) {
+        return res.status(400).send({
+          message: "token expirado",
         });
       }
+      req.userId = tokenExists.id;
+      next();
+    });
+  } catch (error) {
+    throw res.status(403).send({
+      message: "token nao econtrado!",
     });
   }
 };
