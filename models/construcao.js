@@ -79,5 +79,10 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  return Construcao;
+  Construcao.associate = (models) => {
+    Construcao.belongsTo(models.User, {
+      foreignKey: "id",
+      as: "user",
+    });
+  };
 };

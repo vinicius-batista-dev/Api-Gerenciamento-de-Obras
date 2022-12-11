@@ -28,6 +28,9 @@ exports.signup = async (req, res) => {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
     role: req.body.role,
+    construcaoId: req.body.construcaoId,
+    funcionarioId: req.body.funcionarioId,
+    produtoId: req.body.produtoId,
   };
 
   // Save User in the database

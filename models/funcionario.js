@@ -42,5 +42,11 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
   });
-  return Funcionario;
+
+  Funcionario.associate = (models) => {
+    Funcionario.belongsTo(models.User, {
+      foreignKey: "id",
+      as: "user",
+    });
+  };
 };

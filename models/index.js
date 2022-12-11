@@ -1,6 +1,6 @@
 const configuration = require("../database/config-db.js");
 const { Sequelize } = require("sequelize");
-const user = require("./user.js");
+// const user = require("./user.js");
 
 const sequelize = new Sequelize(
   configuration.database,
@@ -29,26 +29,30 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-db.user.hasMany(db.construcao, { as: "construcaos" });
-db.construcao.belongsTo(db.user, {
-  foreignKey: "userId",
-  as: "user",
-});
+//Deve listar todos os usuarios
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Conectado com sucesso");
+  })
+  .catch((err) => {
+    console.error("Nao foi possivel conectar", err);
+  });
 
-db.user.hasMany(db.funcionario, { as: "funcionarios" });
-db.funcionario.belongsTo(db.user, {
-  foreignKey: "userId",
-  as: "user",
-});
+sequelize
+  .sync({ force: false })
+  .then(() => {
+    console.log("Tabelas sincronizadas");
+  })
+  .catch((err) => {
+    console.error("Nao foi possivel sincronizar", err);
+  });
 
-db.user.hasMany(db.produto, { as: "materials" });
-db.produto.belongsTo(db.user, {
-  foreignKey: "userId",
-  as: "user",
-});
-
-db.user.hasMany(db.user, { as: "users" });
-
-db.ROLES = ["user", "admin", "moderator"];
+//SELECT * FROM users
+sequelize
+  .query("SELECT * FROM users", { type: sequelize.QueryTypes.SELECT })
+  .then((users) => {
+    console.log(users);
+  });
 
 module.exports = db;

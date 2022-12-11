@@ -25,12 +25,20 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  //Deve associar o usuario com o token
   User.associate = (models) => {
-    User.hasOne(models.token, {
-      foreignKey: "user_id",
+    User.hasMany(models.Construcao, {
+      foreignKey: "id",
+      as: "construcao",
+    });
+    User.hasMany(models.Funcionario, {
+      foreignKey: "id",
+      as: "funcionario",
+    });
+    User.hasMany(models.Produto, {
+      foreignKey: "id",
+      as: "produto",
     });
   };
 
-  
+  return User;
 };
