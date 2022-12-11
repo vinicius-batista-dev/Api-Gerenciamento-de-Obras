@@ -50,7 +50,6 @@ exports.create = (req, res) => {
     cidade: req.body.cidade,
     valor: req.body.valor,
     status: req.body.status,
-    userId: req.body.userId,
   };
 
   if (req.body.userId) {
