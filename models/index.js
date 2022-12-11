@@ -1,6 +1,5 @@
 const configuration = require("../database/config-db.js");
 const { Sequelize } = require("sequelize");
-const { QueryTypes } = require("sequelize");
 const user = require("./user.js");
 
 const sequelize = new Sequelize(
@@ -48,42 +47,8 @@ db.produto.belongsTo(db.user, {
   as: "user",
 });
 
-//Deve atualizar cada usuario para ter um id de construcao
-sequelize
-  .query("ALTER TABLE users ADD construcaoId INTEGER", {
-    type: QueryTypes.UPDATE,
-  })
-  .then(() => {
-    console.log("Alterado com sucesso");
-  })
-  .catch((err) => {
-    console.log("Erro ao alterar: ", err);
-  });
-
-//Deve atualizar cada usuario para ter um id de funcionario
-sequelize
-  .query("ALTER TABLE users ADD funcionarioId INTEGER", {
-    type: QueryTypes.UPDATE,
-  })
-  .then(() => {
-    console.log("Alterado com sucesso");
-  })
-  .catch((err) => {
-    console.log("Erro ao alterar: ", err);
-  });
-
-//Deve atualizar cada usuario para ter um id de produto
-sequelize
-  .query("ALTER TABLE users ADD produtoId INTEGER", {
-    type: QueryTypes.UPDATE,
-  })
-  .then(() => {
-    console.log("Alterado com sucesso");
-  })
-  .catch((err) => {
-    console.log("Erro ao alterar: ", err);
-  });
 
 
+db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;
