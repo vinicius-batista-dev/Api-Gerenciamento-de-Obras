@@ -48,11 +48,6 @@ sequelize
     console.error("Nao foi possivel sincronizar", err);
   });
 
-//SELECT * FROM users
-sequelize
-  .query("SELECT * FROM users", { type: sequelize.QueryTypes.SELECT })
-  .then((users) => {
-    console.log(users);
-  });
+// 
 
 module.exports = db;
