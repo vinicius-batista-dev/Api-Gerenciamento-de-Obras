@@ -10,11 +10,7 @@ const port = process.env.PORT || 4000;
 
 //https://api-cloud-gerencia.herokuapp.com
 
-app.use(
-  cors({
-    origin: "https://17ae-191-7-29-159.sa.ngrok.io",
-  })
-);
+app.use(cors());
 
 app.use(bodyParser.json());
 
