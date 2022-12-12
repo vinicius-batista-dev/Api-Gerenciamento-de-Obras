@@ -10,13 +10,8 @@ const port = process.env.PORT || 4000;
 
 //https://api-cloud-gerencia.herokuapp.com
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-  })
-);
-
-db.sequelize.sync({ force: false }).then(() => {
+app.use(cors());
+db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
 

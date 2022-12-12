@@ -5,111 +5,49 @@ const validarCpf = require("../utils/validarCpf");
 
 // Path: controller/funcionario-controller.js
 exports.create = (req, res) => {
-  if (
-    !req.body.nome ||
-    !req.body.email ||
-    !req.body.cargo ||
-    !req.body.salario ||
-    !req.body.cpf ||
-    !req.body.dataNascimento ||
-    !req.body.dataAdmissao ||
-    !req.body.dataDemissao ||
-    !req.body.status
-  ) {
-    res.status(400).send({
-      message: "Todos os campos são obrigatórios!",
-    });
-    return;
-  }
+  try {
+    const funcionario = {
+      nome: req.body.nome,
+      cpf: req.body.cpf,
+      email: req.body.email,
+      telefone: req.body.telefone,
+      cargo: req.body.cargo,
+      salario: req.body.salario,
+      dataNascimento: req.body.dataNascimento,
+      endereco: req.body.endereco,
+      bairro: req.body.bairro,
+      cidade: req.body.cidade,
+      estado: req.body.estado,
+      cep: req.body.cep,
+      complemento: req.body.complemento,
+    };
 
-  if (
-    !req.body.nome ||
-    !req.body.email ||
-    !req.body.cargo ||
-    !req.body.salario ||
-    !req.body.cpf ||
-    !req.body.dataNascimento ||
-    !req.body.dataAdmissao ||
-    !req.body.dataDemissao ||
-    !req.body.status
-  ) {
-    res.status(400).send({
-      message: "Todos os campos são obrigatórios!",
-    });
-    return;
-  }
-
-  //Validar se o email é valido
-  if (!emailValidator.validate(req.body.email)) {
-    res.status(400).send({
-      message: "Email inválido!",
-    });
-    return;
-  }
-
-  //Validar se o cpf é valido
-  if (!validarCpf(req.body.cpf)) {
-    res.status(400).send({
-      message: "CPF inválido!",
-    });
-    return;
-  }
-
-  //Validar se o salario é um numero
-  if (isNaN(req.body.salario)) {
-    res.status(400).send({
-      message: "Salario inválido!",
-    });
-    return;
-  }
-
-  //Validar se a data de nascimento é uma data
-  if (isNaN(Date.parse(req.body.dataNascimento))) {
-    res.status(400).send({
-      message: "Data de nascimento inválida!",
-    });
-    return;
-  }
-
-  //Validar se a data de admissao é uma data
-  if (isNaN(Date.parse(req.body.dataAdmissao))) {
-    res.status(400).send({
-      message: "Data de admissão inválida!",
-    });
-    return;
-  }
-
-  //Validar se a data de demissao é uma data
-  if (isNaN(Date.parse(req.body.dataDemissao))) {
-    res.status(400).send({
-      message: "Data de demissão inválida!",
-    });
-    return;
-  }
-
-  //Criar um novo funcionario
-  const funcionario = {
-    nome: req.body.nome,
-    email: req.body.email,
-    cargo: req.body.cargo,
-    salario: req.body.salario,
-    cpf: req.body.cpf,
-    dataNascimento: req.body.dataNascimento,
-    dataAdmissao: req.body.dataAdmissao,
-    dataDemissao: req.body.dataDemissao,
-    status: req.body.status,
-  };
-
-  //Salvar o funcionario no banco de dados
-  Funcionario.create(funcionario)
-    .then((data) => {
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Error ao criar o funcionario.",
+    if (!emailValidator.validate(funcionario.email)) {
+      return res.status(400).send({
+        message: "Email invalido",
       });
+    }
+
+    if (!validarCpf(funcionario.cpf)) {
+      return res.status(400).send({
+        message: "CPF invalido",
+      });
+    }
+
+    Funcionario.create(funcionario)
+      .then((data) => {
+        res.send(data);
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Error ao criar funcionario.",
+        });
+      });
+  } catch (error) {
+    res.status(500).send({
+      message: error.message || "Error ao criar funcionario.",
     });
+  }
 };
 
 exports.findAll = (req, res) => {

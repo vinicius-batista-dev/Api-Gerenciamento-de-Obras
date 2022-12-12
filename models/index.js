@@ -1,6 +1,6 @@
 const configuration = require("../database/config-db.js");
-const { Sequelize } = require("sequelize");
-// const user = require("./user.js");
+const { Sequelize, DataTypes } = require("sequelize");
+const user = require("./user.js");
 
 const sequelize = new Sequelize(
   configuration.database,
@@ -28,6 +28,7 @@ db.user = require("./user.js")(sequelize, Sequelize);
 db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
+
 
 
 module.exports = db;
