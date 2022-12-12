@@ -78,4 +78,9 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
   });
+<<<<<<< HEAD
+=======
+
+  return Construcao;
+>>>>>>> parent of 2bb416e (SELECT FROM USERS row query)
 };

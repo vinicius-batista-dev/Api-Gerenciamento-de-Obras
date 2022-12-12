@@ -25,7 +25,9 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+  //Deve associar o usuario com o token
   User.associate = (models) => {
+<<<<<<< HEAD
     User.hasMany(models.construcao, {
       foreignKey: "user_id",
       as: "construcao",
@@ -45,12 +47,20 @@ module.exports = (sequelize, Sequelize) => {
     User.hasMany(models.produto, {
       foreignKey: "user_id",
       as: "produto",
+=======
+    User.hasOne(models.token, {
+      foreignKey: "user_id",
+>>>>>>> parent of 2bb416e (SELECT FROM USERS row query)
     });
     console.log("User.associate");
   };
 
+<<<<<<< HEAD
   //Deve sincronizar o banco de dados
   User.sync();
 
   return User;
+=======
+  
+>>>>>>> parent of 2bb416e (SELECT FROM USERS row query)
 };

@@ -43,6 +43,9 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 2bb416e (SELECT FROM USERS row query)
   return Produto;
 };
