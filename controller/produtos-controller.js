@@ -2,6 +2,23 @@ const database = require("../models");
 const Produto = database.produto;
 
 exports.create = async (req, res) => {
+  if (
+    !req.body.nome ||
+    !req.body.descricao ||
+    !req.body.preco ||
+    !req.body.quantidade ||
+    !req.body.categoria ||
+    !req.body.status ||
+    !req.body.fornecedor ||
+    !req.body.data_entrada ||
+    !req.body.data_saida
+  ) {
+    res.status(400).send({
+      message: "Todos os campos são obrigatórios!",
+    });
+    return;
+  }
+
   try {
     const produto = {
       nome: req.body.nome,
@@ -41,7 +58,6 @@ exports.findAll = async (req, res) => {
     })
     .catch((err) => {
       return res.status(500).send({
-
         message: err.message || "Error ao encontrar todos os produtos.",
       });
     });

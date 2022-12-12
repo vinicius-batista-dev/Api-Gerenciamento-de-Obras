@@ -5,7 +5,23 @@ const validarCpf = require("../utils/validarCpf");
 
 // Path: controller/funcionario-controller.js
 exports.create = (req, res) => {
-  //Deve validar todos os campos antes de criar um novo funcionario
+  if (
+    !req.body.nome ||
+    !req.body.email ||
+    !req.body.cargo ||
+    !req.body.salario ||
+    !req.body.cpf ||
+    !req.body.dataNascimento ||
+    !req.body.dataAdmissao ||
+    !req.body.dataDemissao ||
+    !req.body.status
+  ) {
+    res.status(400).send({
+      message: "Todos os campos são obrigatórios!",
+    });
+    return;
+  }
+
   if (
     !req.body.nome ||
     !req.body.email ||
@@ -83,7 +99,6 @@ exports.create = (req, res) => {
     dataDemissao: req.body.dataDemissao,
     status: req.body.status,
   };
-
 
   //Salvar o funcionario no banco de dados
   Funcionario.create(funcionario)
