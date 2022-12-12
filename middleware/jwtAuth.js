@@ -7,6 +7,7 @@ const User = database.user;
 verifyToken = async (req, res, next) => {
   try {
     const authHeader = req.headers.authorization;
+    console.log(authHeader);
 
     if (!authHeader) {
       throw res.status(403).send({

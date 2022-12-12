@@ -1,4 +1,3 @@
-const app = require("express")();
 const express = require("express");
 const http = require("http");
 const bodyParser = require("body-parser");
@@ -8,15 +7,14 @@ const db = require("./models");
 
 const port = process.env.PORT || 4000;
 
-//https://api-cloud-gerencia.herokuapp.com
+
+const app = express();
 
 app.use(cors());
-db.sequelize.sync({ force: true }).then(() => {
-  console.log("Drop and re-sync db.");
-});
+db.sequelize.sync();
 
 app.use(bodyParser.json());
-
+/* 13f51daf0a4347ced8f5048ab30f3c7d8c77a24c */
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const swaggerDocument = {

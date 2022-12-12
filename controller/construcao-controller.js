@@ -1,17 +1,19 @@
 const database = require("../models");
 const Construcao = database.construcao;
 
-// Path: controller/construcao-controller.js
+//deve salvar a construcao no banco de dados
 exports.create = (req, res) => {
   try {
+    // Create a Construcao
     const construcao = {
-      descricao: req.body.descricao,
+      nome: req.body.nome,
+      endereco: req.body.endereco,
       dataInicio: req.body.dataInicio,
       dataFim: req.body.dataFim,
       horaInicio: req.body.horaInicio,
       horaFim: req.body.horaFim,
       nomeDaObra: req.body.nomeDaObra,
-      categoriaObra: req.body.categoriaObra,
+      categoria: req.body.categoria,
       cep: req.body.cep,
       bairro: req.body.bairro,
       estado: req.body.estado,
@@ -25,18 +27,19 @@ exports.create = (req, res) => {
       status: req.body.status,
     };
 
+    // Save Construcao in the database
     Construcao.create(construcao)
       .then((data) => {
         res.send(data);
       })
       .catch((err) => {
         res.status(500).send({
-          message: err.message || "Error ao criar construcao.",
+          message: err.message || "Algum erro ocorreu ao criar a construcao.",
         });
       });
   } catch (error) {
     res.status(500).send({
-      message: error.message || "Error ao criar construcao.",
+      message: error.message || "Algum erro ocorreu ao criar a construcao.",
     });
   }
 };
