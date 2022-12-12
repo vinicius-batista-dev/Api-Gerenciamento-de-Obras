@@ -67,7 +67,7 @@ exports.signin = async (req, res) => {
     }
 
     var token = jwt.sign({ id: user.id }, configuration.secret, {
-      expiresIn: 86400, // expires in 24 hours
+      expiresIn: "7d", // expires in 24 hours
     });
 
     await User.update(

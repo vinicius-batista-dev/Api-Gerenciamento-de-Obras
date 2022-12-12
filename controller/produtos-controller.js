@@ -2,7 +2,6 @@ const database = require("../models");
 const Produto = database.produto;
 
 exports.create = async (req, res) => {
-  console.log(req.body);
   try {
     const produto = {
       nome: req.body.nome,
@@ -42,6 +41,7 @@ exports.findAll = async (req, res) => {
     })
     .catch((err) => {
       return res.status(500).send({
+
         message: err.message || "Error ao encontrar todos os produtos.",
       });
     });

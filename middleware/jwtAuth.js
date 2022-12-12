@@ -6,21 +6,24 @@ const User = database.user;
 
 verifyToken = async (req, res, next) => {
   try {
-    const token = req.headers["x-access-token"];
+    const authHeader = req.headers.authorization;
 
-    if (!token) {
+    if (!authHeader) {
       throw res.status(403).send({
         message: "token nao econtrado!",
       });
     }
 
+    const [, token] = authHeader.split(" ");
+
     const tokenExists = jwt.verify(token, configuration.secret);
+
     if (!tokenExists) {
       throw res.status(403).send({
         message: "token invalido!",
       });
     }
-
+    console.log(tokenExists.exp);
     await User.findOne({
       where: {
         id: tokenExists.id,
@@ -40,7 +43,7 @@ verifyToken = async (req, res, next) => {
     });
   } catch (error) {
     throw res.status(403).send({
-      message: "token nao econtrado!",
+      message: "token nao econtrado",
     });
   }
 };

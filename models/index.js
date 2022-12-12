@@ -29,13 +29,5 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-sequelize
-  .sync({ force: false })
-  .then(() => {
-    console.log("Tabelas sincronizadas");
-  })
-  .catch((err) => {
-    console.error("Nao foi possivel sincronizar", err);
-  });
 
 module.exports = db;
