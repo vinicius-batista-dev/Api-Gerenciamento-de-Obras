@@ -29,18 +29,8 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-//Deve listar todos os usuarios
 sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Conectado com sucesso");
-  })
-  .catch((err) => {
-    console.error("Nao foi possivel conectar", err);
-  });
-
-sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(() => {
     console.log("Tabelas sincronizadas");
   })
@@ -48,6 +38,6 @@ sequelize
     console.error("Nao foi possivel sincronizar", err);
   });
 
-// 
+  
 
 module.exports = db;

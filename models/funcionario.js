@@ -43,10 +43,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  Funcionario.associate = (models) => {
-    Funcionario.belongsTo(models.User, {
-      foreignKey: "id",
-      as: "user",
-    });
-  };
+  
 };
