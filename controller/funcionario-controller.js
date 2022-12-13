@@ -23,54 +23,6 @@ exports.create = (req, res) => {
     return;
   }
 
-  //Validar se o email é valido
-  if (!emailValidator.validate(req.body.email)) {
-    res.status(400).send({
-      message: "Email inválido!",
-    });
-    return;
-  }
-
-  //Validar se o cpf é valido
-  if (!validarCpf(req.body.cpf)) {
-    res.status(400).send({
-      message: "CPF inválido!",
-    });
-    return;
-  }
-
-  //Validar se o salario é um numero
-  if (isNaN(req.body.salario)) {
-    res.status(400).send({
-      message: "Salario inválido!",
-    });
-    return;
-  }
-
-  //Validar se a data de nascimento é uma data
-  if (isNaN(Date.parse(req.body.dataNascimento))) {
-    res.status(400).send({
-      message: "Data de nascimento inválida!",
-    });
-    return;
-  }
-
-  //Validar se a data de admissao é uma data
-  if (isNaN(Date.parse(req.body.dataAdmissao))) {
-    res.status(400).send({
-      message: "Data de admissão inválida!",
-    });
-    return;
-  }
-
-  //Validar se a data de demissao é uma data
-  if (isNaN(Date.parse(req.body.dataDemissao))) {
-    res.status(400).send({
-      message: "Data de demissão inválida!",
-    });
-    return;
-  }
-
   //Criar um novo funcionario
   const funcionario = {
     nome: req.body.nome,
@@ -83,7 +35,6 @@ exports.create = (req, res) => {
     dataDemissao: req.body.dataDemissao,
     status: req.body.status,
   };
-
 
   //Salvar o funcionario no banco de dados
   Funcionario.create(funcionario)

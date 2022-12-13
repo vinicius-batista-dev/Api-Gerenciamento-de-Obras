@@ -44,6 +44,7 @@ exports.findAll = (req, res) => {
   const nome = req.query.nome;
   var condition = nome ? { nome: { [Op.like]: `%${nome}%` } } : null;
 
+  console.log(Construcao);
   Construcao.findAll({ where: condition })
     .then((data) => {
       res.send(data);

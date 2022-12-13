@@ -6,7 +6,7 @@ const swaggerUi = require("swagger-ui-express");
 const db = require("./models");
 const swaggerDocument = require("./utils/swaggerDocument");
 
-const port = process.env.PORT || 4000;
+const port = process.env.PORT || 5000;
 
 //https://api-cloud-gerencia.herokuapp.com
 
@@ -37,17 +37,8 @@ require("./routes/funcionario-routes")(app);
 require("./routes/construcao-routes")(app);
 require("./routes/produtos-routes")(app);
 
-
-
 db.sequelize.sync({
-  force: true,
+  force: false,
 });
 
-
-
-
-
-
-
-app.listen(port, () => console.log('Server is running!',port))
-
+app.listen(port, () => console.log("Server is running!", port));

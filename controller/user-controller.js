@@ -9,42 +9,54 @@ const User = database.user;
 
 //Deve criar o usuario e verificar se ele e admin ou nao
 exports.signup = async (req, res) => {
-  // Validate request
-  if (!req.body.username || !req.body.email || !req.body.password) {
-    res.status(400).send({
-      message: "Nao pode estar vazio!",
+  try {
+    const { username, email, password, role } = req.body;
+    if (!username || !email || !password) {
+      return res.status(400).send({ message: "Preencha todos os campos" });
+    }
+    if (!validarEmail.validate(email)) {
+      return res.status(400).send({ message: "Email invalido" });
+    }
+    const user = await User.findOne({ where: { email: email } });
+    if (user) {
+      return res.status(400).send({ message: "Email ja cadastrado" });
+    }
+
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(password, salt);
+
+    const newUser = await User.create({
+      username,
+      email,
+      password: hash,
+      role: "USER",
     });
-    return;
-  }
 
-  //Deve verificar se o usuario ja existe
-  if (await User.findOne({ where: { email: req.body.email } })) {
-    return res.status(400).send({ message: "Usuario ja cadastrado" });
-  }
-
-  // Create a User
-  const user = {
-    username: req.body.username,
-    email: req.body.email,
-    password: bcrypt.hashSync(req.body.password, 8),
-    role: req.body.role,
-  };
-
-  // Save User in the database
-  User.create(user)
-    .then((data) => {
-      console.log(
-        "🚀 ~ file: user-controller.js:38 ~ exports.signup= ~ user",
-        user
-      );
-
-      res.send(data);
-    })
-    .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Algum erro ocorreu ao criar o usuario.",
-      });
+    const token = jwt.sign({ id: newUser.id }, configuration.secret, {
+      expiresIn: "7d", // 24 hours
     });
+
+    await User.update(
+      {
+        token,
+      },
+      {
+        where: {
+          id: newUser.id,
+        },
+      }
+    );
+
+    res.status(200).send({
+      id: newUser.id,
+      username: newUser.username,
+      email: newUser.email,
+      role: newUser.role,
+      token: token,
+    });
+  } catch (err) {
+    res.status(500).send({ message: err.message });
+  }
 };
 
 //Um usuario que logar nao podera ter acesso aos dados de outro usuario
@@ -54,30 +66,21 @@ exports.signin = async (req, res) => {
     if (!user) {
       return res.status(404).send({ message: "Usuario nao encontrado" });
     }
-
-    if (!validarEmail.validate(req.body.email)) {
-      return res.status(400).send({ message: "Email invalido" });
-    }
-
-    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-
+    const passwordIsValid = bcrypt.compareSync(
+      req.body.password,
+      user.password
+    );
     if (!passwordIsValid) {
       return res.status(401).send({
-        token: null,
+        accessToken: null,
         message: "Senha invalida",
       });
     }
-
-    var token = jwt.sign({ id: user.id }, configuration.secret, {
-      expiresIn: 86400, // expires in 24 hours
+    const token = jwt.sign({ id: user.id }, configuration.secret, {
+      expiresIn: 86400, // 24 hours
     });
-    console.log(
-      "🚀 ~ file: user-controller.js:74 ~ exports.signin= ~ token",
-      token
-    );
 
-    const a = await User.update(
-      //Atualiza o token do usuario
+    await User.update(
       {
         token,
       },
@@ -87,9 +90,8 @@ exports.signin = async (req, res) => {
         },
       }
     );
-    /* console.log("🚀 ~ file: user-controller.js:86 ~ exports.signin= ~ a", a);
-     */
-    return res.status(200).json({
+
+    res.status(200).send({
       id: user.id,
       username: user.username,
       email: user.email,
