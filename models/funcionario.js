@@ -42,10 +42,4 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
     },
   });
-<<<<<<< HEAD
-
-  
-=======
-  return Funcionario;
->>>>>>> parent of 2bb416e (SELECT FROM USERS row query)
 };
