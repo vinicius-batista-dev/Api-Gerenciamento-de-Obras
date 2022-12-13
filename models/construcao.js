@@ -79,10 +79,10 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  Construcao.associate = (models) => {
-    Construcao.belongsTo(models.User, {
-      foreignKey: "id",
-      as: "user",
-    });
-  };
+  // Construcao.associate = (models) => {
+  //   Construcao.belongsTo(models.User, {
+  //     foreignKey: "id",
+  //     as: "user",
+  //   });
+  // };
 };

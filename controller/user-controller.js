@@ -28,14 +28,16 @@ exports.signup = async (req, res) => {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
     role: req.body.role,
-    construcaoId: req.body.construcaoId,
-    funcionarioId: req.body.funcionarioId,
-    produtoId: req.body.produtoId,
   };
 
   // Save User in the database
   User.create(user)
     .then((data) => {
+      console.log(
+        "🚀 ~ file: user-controller.js:38 ~ exports.signup= ~ user",
+        user
+      );
+
       res.send(data);
     })
     .catch((err) => {
@@ -69,8 +71,12 @@ exports.signin = async (req, res) => {
     var token = jwt.sign({ id: user.id }, configuration.secret, {
       expiresIn: 86400, // expires in 24 hours
     });
+    console.log(
+      "🚀 ~ file: user-controller.js:74 ~ exports.signin= ~ token",
+      token
+    );
 
-    await User.update(
+    const a = await User.update(
       //Atualiza o token do usuario
       {
         token,
@@ -81,8 +87,9 @@ exports.signin = async (req, res) => {
         },
       }
     );
-
-    res.status(200).send({
+    /* console.log("🚀 ~ file: user-controller.js:86 ~ exports.signin= ~ a", a);
+     */
+    return res.status(200).json({
       id: user.id,
       username: user.username,
       email: user.email,

@@ -43,12 +43,6 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  Produto.associate = (models) => {
-    Produto.belongsTo(models.User, {
-      foreignKey: "id",
-      as: "user",
-    });
-  };
-
+  // s
   return Produto;
 };
