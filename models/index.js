@@ -1,6 +1,5 @@
 const configuration = require("../database/config-db.js");
 const { Sequelize, DataTypes } = require("sequelize");
-const user = require("./user.js");
 
 const sequelize = new Sequelize(
   configuration.database,
@@ -20,14 +19,13 @@ const sequelize = new Sequelize(
 
 const db = {};
 
-db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.user = require("./user.js")(sequelize, Sequelize);
+db.user = require("./user.js")(sequelize);
 
-db.construcao = require("./construcao.js")(sequelize, Sequelize);
-db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
-db.produto = require("./produtos.js")(sequelize, Sequelize);
+db.construcao = require("./construcao.js")(sequelize);
+db.funcionario = require("./funcionario.js")(sequelize);
+db.produto = require("./produtos.js")(sequelize);
 
 
 module.exports = db;

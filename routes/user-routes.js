@@ -1,6 +1,7 @@
 const userController = require("../controller/user-controller");
 const { jwtAuth } = require("../middleware");
 
+
 module.exports = (app) => {
   app.post("/api/auth/signup", userController.signup);
   app.post("/api/auth/signin", userController.signin);

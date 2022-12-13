@@ -1,6 +1,5 @@
 const express = require("express");
 const http = require("http");
-const bodyParser = require("body-parser");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
 const db = require("./models");
@@ -10,13 +9,11 @@ const port = process.env.PORT || 4000;
 //https://api-cloud-gerencia.herokuapp.com
 const app = express();
 app.use(cors());
+app.use(express.json());
+
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
 });
-
-app.use(bodyParser.json());
-
-app.use(bodyParser.urlencoded({ extended: true }));
 
 const swaggerDocument = {
   openapi: "3.0.0",
@@ -695,9 +692,10 @@ const swaggerDocument = {
     },
   },
 };
-
-
-console.log("Listening at:// port:%s (HTTP)", port);
+require("./routes/user-routes")(app);
+require("./routes/funcionario-routes")(app);
+require("./routes/construcao-routes")(app);
+require("./routes/produtos-routes")(app);
 
 var options = {
   swaggerOptions: {
@@ -715,10 +713,19 @@ app.get("/teste", (req, res) => {
   res.send("App gerenciamento de obras working");
 });
 
-require("./routes/user-routes")(app);
-require("./routes/funcionario-routes")(app);
-require("./routes/construcao-routes")(app);
-require("./routes/produtos-routes")(app);
+http
+  .createServer(app)
+  .listen(() => console.log("Listening at:// port:%s (HTTP)", port));
 
+app.use((err, request, response, next) => {
+  if (err instanceof Error) {
+    return response.status(400).json({
+      message: err.message,
+    });
+  }
 
-http.createServer(app).listen(port);
+  return response.status(500).json({
+    status: "error",
+    message: "Internal Server Error",
+  });
+});
