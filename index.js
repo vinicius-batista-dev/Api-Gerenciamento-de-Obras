@@ -1,4 +1,3 @@
-const app = require("express")();
 const express = require("express");
 const http = require("http");
 const bodyParser = require("body-parser");
@@ -9,7 +8,7 @@ const db = require("./models");
 const port = process.env.PORT || 4000;
 
 //https://api-cloud-gerencia.herokuapp.com
-
+const app = express();
 app.use(cors());
 db.sequelize.sync({ force: true }).then(() => {
   console.log("Drop and re-sync db.");
@@ -697,9 +696,7 @@ const swaggerDocument = {
   },
 };
 
-db.sequelize.sync({});
 
-http.createServer(app).listen(port);
 console.log("Listening at:// port:%s (HTTP)", port);
 
 var options = {
@@ -722,3 +719,6 @@ require("./routes/user-routes")(app);
 require("./routes/funcionario-routes")(app);
 require("./routes/construcao-routes")(app);
 require("./routes/produtos-routes")(app);
+
+
+http.createServer(app).listen(port);
