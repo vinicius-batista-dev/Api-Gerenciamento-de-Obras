@@ -1,20 +1,34 @@
 const jwt = require("jsonwebtoken");
-const configuration = require("../database/config-jwt.js");
+const config = require("../database/config-jwt.js");
 const database = require("../models");
 
 const User = database.user;
 
 verifyToken = async (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization;
+  const authHeader = req.headers["Authorization"];
+  console.log(
+    "🚀 ~ file: jwtAuth.js:9 ~ verifyToken= ~ authHeader",
+    authHeader
+  );
+  const [, token] = authHeader.split(" ");
+  console.log("🚀 ~ file: jwtAuth.js:11 ~ verifyToken= ~ token", token);
 
-    if (!authHeader) {
-      throw res.status(403).send({
-        message: "token nao econtrado!",
+  if (!token) {
+    return res.status(403).send({
+      message: "No token provided!",
+    });
+  }
+
+  jwt.verify(token, config.secret, (err, decoded) => {
+    if (err) {
+      return res.status(401).send({
+        message: "Unauthorized!",
       });
     }
-
-    const [, token] = authHeader.split(" ");
+    req.userId = decoded.id;
+    next();
+  });
+}; /* 
 
     const tokenExists = jwt.verify(token, configuration.secret);
 
@@ -24,6 +38,7 @@ verifyToken = async (req, res, next) => {
       });
     }
     console.log(tokenExists.exp);
+  try {
     await User.findOne({
       where: {
         id: tokenExists.id,
@@ -46,7 +61,7 @@ verifyToken = async (req, res, next) => {
       message: "token nao econtrado",
     });
   }
-};
+}; */
 
 const jwtAuth = {
   verifyToken: verifyToken,

@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const Construcao = sequelize.define("construcao", {
+  const Construcao = sequelize.define("construcaos", {
     id: {
       type: Sequelize.INTEGER,
       primaryKey: true,

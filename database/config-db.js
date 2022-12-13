@@ -1,6 +1,6 @@
 module.exports = {
   // mysql://b67122149d29b1:5f2e179d@us-cdbr-east-06.cleardb.net/heroku_5fb386e58c5e48e?reconnect=true
-  host: "127.0.0.1",
+  host: "localhost",
   user: "vinicius",
   password: "admin123",
   database: "app",

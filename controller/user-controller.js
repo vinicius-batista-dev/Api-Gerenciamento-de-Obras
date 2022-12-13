@@ -23,82 +23,65 @@ exports.signup = async (req, res) => {
   }
 
   // Create a User
-  const user = {
+
+  // Save User in the database
+  User.create({
     username: req.body.username,
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password, 8),
-    role: req.body.role,
-  };
-
-  // Save User in the database
-  User.create(user)
+    role: "USER",
+  })
     .then((data) => {
       console.log(
-        "🚀 ~ file: user-controller.js:38 ~ exports.signup= ~ user",
-        user
+        "🚀 ~ file: user-controller.js:38 ~ exports.signup= ~ data",
+        data
       );
 
-      res.send(data);
+      res.send({ message: "User registered successfully!" });
     })
     .catch((err) => {
-      res.status(500).send({
-        message: err.message || "Algum erro ocorreu ao criar o usuario.",
-      });
+      res.status(500).send({ message: err.message });
     });
 };
 
 //Um usuario que logar nao podera ter acesso aos dados de outro usuario
 exports.signin = async (req, res) => {
-  try {
-    const user = await User.findOne({ where: { email: req.body.email } });
-    if (!user) {
-      return res.status(404).send({ message: "Usuario nao encontrado" });
-    }
-
-    if (!validarEmail.validate(req.body.email)) {
-      return res.status(400).send({ message: "Email invalido" });
-    }
-
-    var passwordIsValid = bcrypt.compareSync(req.body.password, user.password);
-
-    if (!passwordIsValid) {
-      return res.status(401).send({
-        token: null,
-        message: "Senha invalida",
-      });
-    }
-
-    var token = jwt.sign({ id: user.id }, configuration.secret, {
-      expiresIn: 86400, // expires in 24 hours
-    });
-    console.log(
-      "🚀 ~ file: user-controller.js:74 ~ exports.signin= ~ token",
-      token
-    );
-
-    const a = await User.update(
-      //Atualiza o token do usuario
-      {
-        token,
-      },
-      {
-        where: {
-          id: user.id,
-        },
+  User.findOne({
+    where: {
+      username: req.body.username,
+    },
+  })
+    .then((user) => {
+      if (!user) {
+        return res.status(404).send({ message: "User Not found." });
       }
-    );
-    /* console.log("🚀 ~ file: user-controller.js:86 ~ exports.signin= ~ a", a);
-     */
-    return res.status(200).json({
-      id: user.id,
-      username: user.username,
-      email: user.email,
-      role: user.role,
-      token: token,
+
+      var passwordIsValid = bcrypt.compareSync(
+        req.body.password,
+        user.password
+      );
+
+      if (!passwordIsValid) {
+        return res.status(401).send({
+          accessToken: null,
+          message: "Invalid Password!",
+        });
+      }
+
+      var token = jwt.sign({ id: user.id }, config.secret, {
+        expiresIn: 86400, // 24 hours
+      });
+
+      res.status(200).send({
+        id: user.id,
+        username: user.username,
+        email: user.email,
+        token: token,
+      });
+    })
+    .catch((err) => {
+      res.status(500).send({ message: err.message });
     });
-  } catch (err) {
-    res.status(500).send({ message: err.message });
-  }
 };
 
 exports.logout = async (req, res) => {

@@ -3,8 +3,11 @@ const http = require("http");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const swaggerUi = require("swagger-ui-express");
-const db = require("./models");
 const swaggerDocument = require("./utils/swaggerDocument");
+const db = require("./models");
+var corsOptions = {
+  origin: "http://localhost:3000",
+};
 
 const port = process.env.PORT || 4000;
 
@@ -12,15 +15,25 @@ const port = process.env.PORT || 4000;
 
 const app = express();
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(express.json());
+
+// parse requests of content-type - application/json
+app.use(bodyParser.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
 
 var options = {
   swaggerOptions: {
     persistAuthorization: true,
   },
 };
+
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and Resync Database with { force: true }");
+});
 
 app.use(
   "/api-docs",
@@ -37,17 +50,4 @@ require("./routes/funcionario-routes")(app);
 require("./routes/construcao-routes")(app);
 require("./routes/produtos-routes")(app);
 
-
-
-db.sequelize.sync({
-  force: true,
-});
-
-
-
-
-
-
-
-app.listen(port, () => console.log('Server is running!',port))
-
+app.listen(port, () => console.log("Server is running!", port));
