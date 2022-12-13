@@ -4,7 +4,7 @@ const database = require("../models");
 
 const User = database.user;
 
-verifyToken = async (req, res, next) => {
+verifyToken = (req, res, next) => {
   const authHeader = req.headers["Authorization"];
   console.log(
     "🚀 ~ file: jwtAuth.js:9 ~ verifyToken= ~ authHeader",
