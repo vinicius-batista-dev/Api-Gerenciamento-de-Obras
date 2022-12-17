@@ -37,8 +37,8 @@ require("./routes/funcionario-routes")(app);
 require("./routes/construcao-routes")(app);
 require("./routes/produtos-routes")(app);
 
-db.sequelize.sync({
-  force: false,
-});
+// db.sequelize.sync({
+//   force: false,
+// });
 
 app.listen(port, () => console.log("Server is running!", port));

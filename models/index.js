@@ -1,5 +1,6 @@
 const configuration = require("../database/config-db.js");
 const { Sequelize } = require("sequelize");
+const { query } = require("express");
 // const user = require("./user.js");
 
 const sequelize = new Sequelize(
@@ -29,30 +30,17 @@ db.construcao = require("./construcao.js")(sequelize, Sequelize);
 db.funcionario = require("./funcionario.js")(sequelize, Sequelize);
 db.produto = require("./produtos.js")(sequelize, Sequelize);
 
-// //Deve listar todos os usuarios
-// sequelize
-//   .authenticate()
-//   .then(() => {
-//     console.log("Conectado com sucesso");
-//   })
-//   .catch((err) => {
-//     console.error("Nao foi possivel conectar", err);
-//   });
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log("Connection has been established successfully.");
+  })
+  .catch((err) => {
+    console.error("Unable to connect to the database:", err);
+  });
 
-// sequelize
-//   .sync({ force: false })
-//   .then(() => {
-//     console.log("Tabelas sincronizadas");
-//   })
-//   .catch((err) => {
-//     console.error("Nao foi possivel sincronizar", err);
-//   });
-
-// //SELECT * FROM users
-// sequelize
-//   .query("SELECT * FROM users", { type: sequelize.QueryTypes.SELECT })
-//   .then((users) => {
-//     console.log(users);
-//   });
+sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+});
 
 module.exports = db;
