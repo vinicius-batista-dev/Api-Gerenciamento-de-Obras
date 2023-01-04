@@ -7,11 +7,17 @@ const db = require("./models");
 
 const port = process.env.PORT || 4000;
 
-
 const app = express();
 
 app.use(cors());
-db.sequelize.sync();
+
+db.sequelize
+  .sync({
+    force: true,
+  })
+  .then(() => {
+    console.log("Drop and re-sync db.");
+  });
 
 app.use(bodyParser.json());
 /* 13f51daf0a4347ced8f5048ab30f3c7d8c77a24c */

@@ -25,32 +25,5 @@ module.exports = (sequelize, Sequelize) => {
     },
   });
 
-  User.associate = (models) => {
-    User.hasMany(models.construcao, {
-      foreignKey: "user_id",
-      as: "construcao",
-    });
-    console.log("User.associate");
-  };
-
-  User.associate = (models) => {
-    User.hasMany(models.funcionario, {
-      foreignKey: "user_id",
-      as: "funcionario",
-    });
-    console.log("User.associate");
-  };
-
-  User.associate = (models) => {
-    User.hasMany(models.produto, {
-      foreignKey: "user_id",
-      as: "produto",
-    });
-    console.log("User.associate");
-  };
-
-  //Deve sincronizar o banco de dados
-  User.sync();
-
   return User;
 };
