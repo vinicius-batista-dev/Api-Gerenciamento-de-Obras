@@ -22,17 +22,17 @@ The objective of this project is to create an API to manage employees and produc
 
 ### Example Routes
 
-- POST /api/employess - Cadastrar funcionários
-- GET /api/employess - Listar funcionários
-- GET /api/employess/:id - Listar funcionário
-- PUT /api/employess/:id - Atualizar funcionário
-- DELETE /api/employess/:id - Deletar funcionário
+- POST /api/employess - register employees
+- GET /api/employess - list employees
+- GET /api/employess/:id - List employee by id
+- PUT /api/employess/:id - Update employee by id
+- DELETE /api/employess/:id - delete employee by id
 
-- POST /api/products - Cadastrar produtos
-- GET /api/products - Listar produtos
-- GET /api/products/:id - Listar produto
-- PUT /api/products/:id - Atualizar produto
-- DELETE /api/products/:id - Deletar produto
+- POST /api/products - register products
+- GET /api/products - list products
+- GET /api/products/:id - list products by id
+- PUT /api/products/:id - Update product by id
+- DELETE /api/products/:id - delete product by id
 
 ## Project Layer
 
